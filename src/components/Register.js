@@ -17,23 +17,27 @@ class Register extends Component{
                                 <h4>Username</h4>
                             </div>
                             <form className='input-group'>
-                                <input className='form-control'></input>
+                                <input className='form-control'
+                                ref={(input) => {this.username = input}}></input>
                             </form>
 
                             <div className='card-title'>
                                 <h4>Email</h4>
                             </div>
                             <form className='input-group'>
-                                <input className='form-control'></input>
+                                <input className='form-control'
+                                ref={(input) => {this.email = input}}></input>
                             </form>
 
                             <div className='card-title'>
                                 <h4>Password</h4>
                             </div>
                             <form className='input-group'>
-                                <input className='form-control' type="password"></input>
+                                <input className='form-control' type="password"
+                                ref={(input) => {this.password = input}}></input>
                             </form>
-
+                            
+                            <button className='btn btn-success mt-3'>Register</button>
                         </div>
                     </div>
                 </div>
