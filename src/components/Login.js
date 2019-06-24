@@ -2,8 +2,6 @@ import React,{Component} from 'react'
 import {Link} from 'react-router-dom'
 
 class Login extends Component{
-
-    
     render(){
         return(
            <div>
@@ -31,7 +29,7 @@ class Login extends Component{
                                 <input className='form-control' type="password"
                                 ref={(password) => {this.password = password}}></input>
                             </form>
-                            <button className='btn btn-primary mt-3' onClick={this.onButtonClick}>Login</button>
+                            <button className='btn btn-primary mt-3' onClick={this.onButtonClicks}>Login</button>
                             <p className="mt-3">Tidak memiliki akun? <Link to="/register">Register disini</Link></p>
 
                         </div>
