@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 
 class Register extends Component{
     //ini harus dibuat dengan ARROW FUNCTION, karena this di dalamnya akan mengacu pada object
@@ -89,7 +90,8 @@ class Register extends Component{
                                 ref={(password) => {this.password = password}}></input>
                             </form>
                             <button className='btn btn-success mt-3' onClick={this.onButtonClick}>Register</button>
-                            
+                            <p className="mt-3">Tidak memiliki akun? <Link to="/login">Daftar disini</Link></p>
+
                         </div>
                     </div>
                 </div>
