@@ -1,5 +1,8 @@
 import React,{Component} from 'react'
+
+//npm install --save reactstrap
 import {
+    Button,
     Collapse,
     Navbar,
     NavbarToggler,
@@ -11,6 +14,7 @@ import {
     DropdownToggle,
     DropdownMenu,
     DropdownItem } from 'reactstrap';
+import {Link} from 'react-router-dom'
 
 
 class Header extends Component{
@@ -36,29 +40,21 @@ class Header extends Component{
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink href="/components/">Components</NavLink>
+              <NavItem className="my-2">
+                <Link to="/components/">All Products</Link>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                  {/* karena Button in digunakan untuk ke link, makanya di wrap dengan <Link></Link> */}
+                <Link to="/register">
+                    <Button color="outline-success" className="mx-3">Register</Button>
+                </Link>
               </NavItem>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Options
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>
-                    Option 1
-                  </DropdownItem>
-                  <DropdownItem>
-                    Option 2
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
-                    Reset
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
+              <NavItem>
+                  <Link to='/login'>
+                    <Button color="outline-primary">Login</Button>
+                  </Link>
+              </NavItem>
+              
             </Nav>
           </Collapse>
         </Navbar>
