@@ -17,7 +17,8 @@ class App extends Component{
             <BrowserRouter>
                 <div>
                     {/* keyword EXACT itu akan literally melihat route nya menjadi "/register"
-                        kalau tidak memakai EXACT, maka route nya akan membaca bahwa route tersebut mengandung "/" dan apakah mengandung "/register", makanya di tampilkan home dan register */}
+                        kalau tidak memakai EXACT, maka route nya akan membaca bahwa route tersebut mengandung "/" dan apakah mengandung "/register", makanya di tampilkan home dan register 
+                        kenapa home yang di exact? karena route akan melihat bahwa component HOME saja yang harus exact dan tidak memasukkan "/" ke route yang lainnya*/}
                     <Route path="/" exact component={Home}/>
                     <Route path="/login" component={Login}/>
                     <Route path="/register" component={Register}/>

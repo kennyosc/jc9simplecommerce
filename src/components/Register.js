@@ -90,7 +90,7 @@ class Register extends Component{
                                 ref={(password) => {this.password = password}}></input>
                             </form>
                             <button className='btn btn-success mt-3' onClick={this.onButtonClick}>Register</button>
-                            <p className="mt-3">Tidak memiliki akun? <Link to="/login">Daftar disini</Link></p>
+                            <p className="mt-3">Sudah memiliki akun? <Link to="/login">Login disini</Link></p>
 
                         </div>
                     </div>
