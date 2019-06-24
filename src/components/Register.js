@@ -5,27 +5,54 @@ class Register extends Component{
     //ini harus dibuat dengan ARROW FUNCTION, karena this di dalamnya akan mengacu pada object
     //kalau pakai function() biasa, this nya akan mengacu di tempat function ini terpanggil
     onButtonClick = () =>{
-        const username = this.username.value
-        const email = this.email.value
-        const pass = this.password.value
+        //bisa memakai .trim() di username supaya ketika user memasukkan ('k e n n y') -> hasilnya akan menjadi ('kenny')
+        //karena username itu tidak boleh ada spasi
+        const username = this.username.value.trim()
+        const email = this.email.value.trim()
+        const pass = this.password.value.trim()
 
-        //Taruh data di JSON dengan menggunakan AXIOS
-        //Untuk POST data mengunakan axios.post
-        //untuk mengambil data, menggunakan axios.get
-        axios.post('http://localhost:2019/users',{
-            user : username,
-            email: email,
-            password: pass
-        }).then((res)=>{
-            console.log(res)
-            console.log('Data berhasil diinput')
-        }).catch((err)=>{
-            console.log(err)
-            console.log('Gagal post data')
-        })
-        //.then itu kalau berhaasil, .catch itu kalau gagal
-    }
-
+        if(username == '' || email == '' || pass == ''){
+            console.log('Mohon untuk mengisi semua field')
+        } else{
+            axios.get('http://localhost:2019/users',{
+                params:{ //ini dipisah 1-1 supaya USER bisa tahu apakah username atau email yang sudah digunakan. kalau digabung itu USER membingungkan
+                    username: username
+                }
+            }).then((res)=>{ //.then dijalankan ketika berhasil req, bukan berhasil atau tidaknya mendapatkan data
+                console.log(res)
+                if(res.data.length > 0){
+                    console.log('Username sudah digunakan')
+                } else{
+                    axios.get('http://localhost:2019/users',{
+                        params:{
+                            email:email
+                        }
+                    }).then((res)=>{
+                        if(res.data.length > 0){
+                            console.log('Email sudah digunakan')
+                        } else{
+                            axios.post('http://localhost:2019/users',{
+                                    username : username,
+                                    email: email,
+                                    password: pass
+                                }).then((res)=>{
+                                    console.log(res)
+                                    console.log('Data berhasil diinput')
+                                }).catch((err)=>{
+                                    console.log(err)
+                                    console.log('Gagal post data')
+                                })
+                            }
+                        })
+                    }
+                            }
+            ).catch((err)=>{
+                console.log(err)
+                })
+        }
+    
+        }
+        
     render(){
         return(
            <div>
@@ -61,8 +88,8 @@ class Register extends Component{
                                 <input className='form-control' type="password"
                                 ref={(password) => {this.password = password}}></input>
                             </form>
-                            
                             <button className='btn btn-success mt-3' onClick={this.onButtonClick}>Register</button>
+                            
                         </div>
                     </div>
                 </div>
