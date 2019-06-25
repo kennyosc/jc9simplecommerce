@@ -7,10 +7,16 @@
       "password": "password"
     },
     {
-      "username": "kennyosc", 
+      "username": "kennyosc",
       "email": "kennyosc@gmail.com",
       "password": "pass",
       "id": 2
+    },
+    {
+      "username": "hennytirta",
+      "email": "hennytirta@gmail.com",
+      "password": "password",
+      "id": 3
     }
   ]
 }

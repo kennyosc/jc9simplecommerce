@@ -18,6 +18,7 @@ class Login extends Component{
     render(){
         return(
            <div>
+               <h1>{this.props.user.username}</h1>
                {/* col-sm-3 akan bisa dijalankan ketika atasnya ada class ROW */}
                 <div className = 'mt-5 row'>
                     <div className = "col-sm-3 mx-auto card">
@@ -53,5 +54,10 @@ class Login extends Component{
     }
 }
 
+const mapStateToDefault = (state) =>{
+    return{
+        user : state.auth
+    }
+}
 
-export default connect(null, {onLoginUsers})(Login)
+export default connect(mapStateToDefault, {onLoginUsers})(Login)
