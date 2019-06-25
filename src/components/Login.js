@@ -1,26 +1,15 @@
 import React,{Component} from 'react'
 import {Link} from 'react-router-dom'
-import axios from 'axios'
+import {onLoginUsers} from '../actions/index'
+import {connect} from 'react-redux'
 
 class Login extends Component{
 
     onButtonClick = () =>{
-        var username = this.username.value;
-        var password = this.password.value;
+        var user = this.username.value;
+        var pass = this.password.value;
 
-        axios.get("http://localhost:2019/users", {
-            params:{
-                username: username,
-                password : password
-            }
-        }).then((res)=>{
-            console.log(res)
-            if(res.data.length > 0){
-                console.log(res.data[0].username + ' have been logged in')
-            } else{
-                console.log('Username / Password incorrect')
-            }
-        })
+        this.props.onLoginUsers(user,pass)
     }
 
     render(){
@@ -62,4 +51,4 @@ class Login extends Component{
 }
 
 
-export default Login
+export default connect(null, {onLoginUsers})(Login)
