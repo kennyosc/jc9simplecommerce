@@ -8,7 +8,7 @@ const init = {
 const AuthReducer = (data = init, action) =>{
     switch (action.type) {
         case "LOGIN_SUCCESS":
-            
+            return (action.payload)
             break;
     
         default:
