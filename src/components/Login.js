@@ -15,12 +15,10 @@ class Login extends Component{
             }
         }).then((res)=>{
             console.log(res)
-            for(var i = 0; i<res.data.length; i++){
-                if((res.data[i].username !== username && res.data[i].password !== password) || res.data.length === 0){
-                    console.log("Username/ Password anda salah")
-                } else if (res.data[i].username == username && res.data[i].password == password){
-                    console.log('You have been logged in')
-                }
+            if(res.data.length > 0){
+                console.log(res.data[0].username + ' have been logged in')
+            } else{
+                console.log('Username / Password incorrect')
             }
         })
     }
