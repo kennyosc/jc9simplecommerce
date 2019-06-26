@@ -17,6 +17,7 @@ import {
     
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {onLogoutUsers} from '../actions/index'
 
 
 class Header extends Component{
@@ -89,9 +90,7 @@ class Header extends Component{
                                   Add Product
                                 </DropdownItem>
                                 <DropdownItem divider />
-                                <DropdownItem>
-                                  SignOut
-                                </DropdownItem>
+                                <Button className="dropdown-item btn btn-warning" onClick={this.props.onLogoutUsers}>Logout</Button>
                               </DropdownMenu>
                             </UncontrolledDropdown>
                             </Nav>
@@ -110,4 +109,4 @@ const mapStateToProps = (state) =>{
   }
 }
 
-export default connect(mapStateToProps)(Header)
+export default connect(mapStateToProps, {onLogoutUsers})(Header)

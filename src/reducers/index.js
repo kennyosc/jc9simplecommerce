@@ -16,6 +16,14 @@ const AuthReducer = (data = init, action) =>{
                 username: action.payload.username
             };
         break;
+        
+        case 'LOGOUT_SUCCESS':
+            return{
+                ...data,
+                id:'',
+                username:''
+            }
+        break;
     
         default:
             return data

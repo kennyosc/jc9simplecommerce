@@ -2,7 +2,6 @@ import React,{Component} from 'react'
 import {Link} from 'react-router-dom'
 import {onLoginUsers} from '../actions/index'
 import {connect} from 'react-redux'
-
 //npm i --save redux-thunk
 
 
