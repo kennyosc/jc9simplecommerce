@@ -7,6 +7,9 @@ import {connect} from 'react-redux'
 
 class Login extends Component{
 
+    //kalau login, itu harus menggunakan reducers dan action
+    //karena dia bukan hanya menggunakan json-server tapi juga menggunakan redux
+    // untuk kesannya membuat sebuah session (state redux) untuk user yang sedang login
     onButtonClick = () =>{
         var user = this.username.value;
         var pass = this.password.value;

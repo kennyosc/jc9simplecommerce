@@ -18,5 +18,49 @@
       "password": "password",
       "id": 3
     }
+  ],
+  "product": [
+    {
+      "id": 1,
+      "name": "ASUS TUF fx505dd",
+      "desc": "Best gaming laptop for the price",
+      "price": 9999999,
+      "src": "https://www.asus.com/media/global/products/4cDARfbRGBOGLKa1/P_setting_fff_1_90_end_600.png"
+    },
+    {
+      "id": 2,
+      "name": "ASUS TUF fx505dd",
+      "desc": "Best gaming laptop for the price",
+      "price": 9999999,
+      "src": "https://www.asus.com/media/global/products/4cDARfbRGBOGLKa1/P_setting_fff_1_90_end_600.png"
+    },
+    {
+      "id": 3,
+      "name": "ASUS TUF fx505dd",
+      "desc": "Best gaming laptop for the price",
+      "price": 9999999,
+      "src": "https://www.asus.com/media/global/products/4cDARfbRGBOGLKa1/P_setting_fff_1_90_end_600.png"
+    },
+    {
+      "name": "Lenovo Legion Y540",
+      "desc": "Minimalist gaming laptop",
+      "price": "14950000",
+      "src": "https://www.lenovo.com/medias/lenovo-legion-y540-17-hero.png?context=bWFzdGVyfHJvb3R8NDEyMjQ5fGltYWdlL3BuZ3xoMGQvaDUzLzk5ODY4MzEzMTkwNzAucG5nfGVlZTdjM2Y4Mjk5ZjEzYWMyMTE5YThmNzY0MGFkNDc3MmFkY2IxNDg3ZjgyMjg4ZTBlMWNkMGZlNTZlOTIyNDk",
+      "id": 4
+    },
+    {
+      "name": "ASUS VivoBook 15 X510ZA",
+      "desc": "Asus Vivobook thin and light laptop",
+      "price": "5999000",
+      "src": "https://www.asus.com/media/global/products/Tb6SRojBvAkM9HYH/P_setting_fff_1_90_end_600.png",
+      "id": 5
+    },
+    {
+      "name": "Lenovo IDEAPAD 330s",
+      "desc": "Thin bezel, simple design",
+      "price": "7050000",
+      "src": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6291/6291881_sd.jpg",
+      "id": 6
+    }
   ]
 }

@@ -1,11 +1,11 @@
 import {combineReducers} from 'redux'
 
-const init = {
+const initAuth = {
     id: '',
     username: ''
 }
 
-const AuthReducer = (data = init, action) =>{
+const AuthReducer = (data = initAuth, action) =>{
     switch (action.type) {
         case "LOGIN_SUCCESS":
             return{
@@ -23,12 +23,12 @@ const AuthReducer = (data = init, action) =>{
                 id:'',
                 username:''
             }
-        break;
-    
+        break;    
         default:
             return data
     }
 }
+
 
 export default combineReducers(
     {
