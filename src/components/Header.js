@@ -13,7 +13,8 @@ import {
     UncontrolledDropdown,
     DropdownToggle,
     DropdownMenu,
-    DropdownItem } from 'reactstrap'
+    DropdownItem,
+    Alert } from 'reactstrap'
     
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
@@ -26,13 +27,18 @@ class Header extends Component{
     
         this.toggle = this.toggle.bind(this);
         this.state = {
-          isOpen: false
+          isOpen: false,
+          visible: true
         };
+        this.onDismiss = this.onDismiss.bind(this);
       }
       toggle() {
         this.setState({
           isOpen: !this.state.isOpen
         });
+      }
+      onDismiss() {
+        this.setState({ visible: false });
       }
 
     render(){
@@ -45,7 +51,7 @@ class Header extends Component{
               <Collapse isOpen={this.state.isOpen} navbar>
                 <Nav className="ml-auto" navbar>
                   <NavItem className="my-2">
-                    <Link to="/components/">All Products</Link>
+                    <Link to="/">All Products</Link>
                   </NavItem>
                   <NavItem>
                       {/* karena Button in digunakan untuk ke link, makanya di wrap dengan <Link></Link> */}
@@ -76,7 +82,7 @@ class Header extends Component{
                     <Link to="/manageproduct/" className="mx-3">Hello {this.props.user.username}</Link>
                   </NavItem>
                   <NavItem className="my-2">
-                    <Link to="/manageproduct/" className="mx-3">All Products</Link>
+                    <Link to="/" className="mx-3">All Products</Link>
                   </NavItem>
                     <UncontrolledDropdown nav inNavbar>
                               <DropdownToggle nav caret>
@@ -87,7 +93,7 @@ class Header extends Component{
                                   OVO
                                 </DropdownItem>
                                 <DropdownItem>
-                                  Add Product
+                                  <Link to='/manageproduct'>Add Product</Link>
                                 </DropdownItem>
                                 <DropdownItem divider />
                                 <Button className="dropdown-item btn btn-warning" onClick={this.props.onLogoutUsers}>Logout</Button>
@@ -96,6 +102,9 @@ class Header extends Component{
                             </Nav>
               </Collapse>
             </Navbar>
+            <Alert color="success" isOpen={this.state.visible} toggle={this.onDismiss}>
+                You have successfully signedin!
+            </Alert>
           </div>
                   
         )

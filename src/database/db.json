@@ -29,17 +29,17 @@
     },
     {
       "id": 2,
-      "name": "ASUS TUF fx505dd",
-      "desc": "Best gaming laptop for the price",
-      "price": 9999999,
-      "src": "https://www.asus.com/media/global/products/4cDARfbRGBOGLKa1/P_setting_fff_1_90_end_600.png"
+      "name": "ASUS Zephyrus S Ultra Slim",
+      "desc": "Thin Gaming Laptop",
+      "price": 20099000,
+      "src": "https://img-us1.asus.com/A/show/AW000706/2019/0126/AM0000009/201901AM260000009_15490692392002820033732.jpg"
     },
     {
       "id": 3,
-      "name": "ASUS TUF fx505dd",
-      "desc": "Best gaming laptop for the price",
-      "price": 9999999,
-      "src": "https://www.asus.com/media/global/products/4cDARfbRGBOGLKa1/P_setting_fff_1_90_end_600.png"
+      "name": "Macbook Pro",
+      "desc": "Apple",
+      "price": 25450000,
+      "src": "https://i2.wp.com/nigerianprice.com/wp-content/uploads/2018/05/macbook-pro-price-in-nigeria.png?fit=557%2C343&ssl=1"
     },
     {
       "name": "Lenovo Legion Y540",
@@ -61,6 +61,13 @@
       "price": "7050000",
       "src": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6291/6291881_sd.jpg",
       "id": 6
+    },
+    {
+      "name": "Lenovo Thinkpad X1 Carbon i7",
+      "desc": "The best business laptop ever",
+      "price": "20100000",
+      "src": "https://cdn.vox-cdn.com/thumbor/IFfF8bBXxqwHjIgmx1WA7H2JF_k=/0x0:2000x1126/1200x800/filters:focal(840x403:1160x723)/cdn.vox-cdn.com/uploads/chorus_image/image/62794716/02_X1_Carbon_Hero_Front_Facing_JD.0.png",
+      "id": 7
     }
   ]
 }
