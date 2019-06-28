@@ -9,6 +9,7 @@ class ProductItem extends Component{
                     <img src={val.src} className='w-75' alt='Product'/>
                     <div className='card-body'>
                         <h5 className='card-title'>{val.name}</h5>
+                        <p className='card-text'>Rp{val.price},-</p>
                         <p className='card-text'>{val.desc}</p>
                         <input type='number' className='form-control' placeholder='Qty' min='1'/>
                         <button className='btn btn-outline-primary btn-block my-2'>Details</button>

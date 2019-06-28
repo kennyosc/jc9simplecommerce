@@ -37,13 +37,13 @@ class Home extends Component{
                     &&
                     val.price <= max
                 )
-            } else if (isNaN(max)){
+            } else if (isNaN(max)){ // serach Name and min
                 return(
                     val.name.toLowerCase().includes(name.toLowerCase())
                     &&
                     val.price >= min
                 )
-            } else{
+            } else{ //search all . semua string itu mengandung string kosong
                 return(
                     val.name.toLowerCase().includes(name.toLowerCase())
                     &&
@@ -54,6 +54,9 @@ class Home extends Component{
             }
         })
         console.log(arrSearch)
+        console.log(name)
+        console.log(min)
+        console.log(max)
         this.setState({product: arrSearch})
     }
 
