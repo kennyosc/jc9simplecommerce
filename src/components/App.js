@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 // import react-router-dom
 // npm install --save react-router-dom
 import {Route, BrowserRouter} from 'react-router-dom'
+import cookies from 'universal-cookie'
 
 import Header from './Header'
 import Home from './Home'
@@ -10,9 +11,25 @@ import Login from './Login'
 import Register from './Register'
 import ManageProduct from './ManageProduct'
 
+import {keepLogin} from '../actions'
+import {connect} from 'react-redux'
+
 //localhost:3000/register
 
+const cookie = new cookies()
+
 class App extends Component{
+
+    componentDidMount(){
+        const userCookie = cookie.get('userName') //undefined
+        console.log(userCookie)
+
+        if(userCookie !== undefined){ // ketika userCookie ada isinya, maka akan di login ulang secara otomatis
+            //Login ulang
+            this.props.keepLogin(userCookie)
+        }
+    }
+
     render(){
         return(
             <BrowserRouter>
@@ -31,4 +48,4 @@ class App extends Component{
     }
 }
 
-export default App
+export default connect(null,{keepLogin})(App)
