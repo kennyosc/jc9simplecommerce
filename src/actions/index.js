@@ -33,7 +33,7 @@ export const onLoginUsers = (user,pass) =>{
                 )
 
                 //CREATE DATA UNTUK COOKIE
-                cookie.set('userName', username, {path:'/'}) // bisa juga cookie.set('userName', res.data[0].username)
+                cookie.set('userName', {username,id} ,{path:'/'}) // bisa juga cookie.set('userName', res.data[0].username, {path:'/'})
             } else{
                 console.log('Username / Password incorrect')
             }
@@ -42,23 +42,15 @@ export const onLoginUsers = (user,pass) =>{
 }
 
 //bikin function untuk automatic login by cookies
-export const keepLogin = (user) =>{
-    
-    return(dispatch) => {
-        axios.get('http://localhost:2019/users',{
-            params:{
-                username:user
-            }
-        }).then((res)=>{
-            dispatch({
-                type:'KEEP_LOGIN',
-                payload:{
-                    id:res.data[0].id,
-                    username: res.data[0].username
-                }
-            })
-        })
+export const keepLogin = (objUser) =>{
+    return{
+        type:'KEEP_LOGIN',
+        payload: {
+            id: objUser.id,
+            username: objUser.username
+        }
     }
+    
 }
 
 export const onLogoutUsers = () =>{

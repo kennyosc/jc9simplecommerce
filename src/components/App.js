@@ -21,12 +21,12 @@ const cookie = new cookies()
 class App extends Component{
 
     componentDidMount(){
-        const userCookie = cookie.get('userName') //undefined
-        console.log(userCookie)
+        const objCookie = cookie.get('userName') //undefined
+        console.log(objCookie)
 
-        if(userCookie !== undefined){ // ketika userCookie ada isinya, maka akan di login ulang secara otomatis
+        if(objCookie !== undefined){ // ketika objCookie ada isinya, maka akan di login ulang secara otomatis
             //Login ulang
-            this.props.keepLogin(userCookie)
+            this.props.keepLogin(objCookie)
         }
     }
 
