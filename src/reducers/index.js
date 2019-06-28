@@ -16,14 +16,6 @@ const AuthReducer = (data = initAuth, action) =>{
                 username: action.payload.username
             };
         break;
-
-        case 'KEEP_LOGIN':
-            return{
-                ...data,
-                id:action.payload.id,
-                username: action.payload.username
-            }
-        break;
         
         case 'LOGOUT_SUCCESS':
             return{

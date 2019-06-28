@@ -33,7 +33,7 @@ export const onLoginUsers = (user,pass) =>{
                 )
 
                 //CREATE DATA UNTUK COOKIE
-                cookie.set('userName', {username,id} ,{path:'/'}) // bisa juga cookie.set('userName', res.data[0].username, {path:'/'})
+                cookie.set('userName', {id,username} ,{path:'/'}) // bisa juga cookie.set('userName', res.data[0].username, {path:'/'})
             } else{
                 console.log('Username / Password incorrect')
             }
@@ -44,7 +44,7 @@ export const onLoginUsers = (user,pass) =>{
 //bikin function untuk automatic login by cookies
 export const keepLogin = (objUser) =>{
     return{
-        type:'KEEP_LOGIN',
+        type:'LOGIN_SUCCESS',
         payload: {
             id: objUser.id,
             username: objUser.username
@@ -54,6 +54,7 @@ export const keepLogin = (objUser) =>{
 }
 
 export const onLogoutUsers = () =>{
+    cookie.remove('userName')
     return{
         type:'LOGOUT_SUCCESS'
     }
