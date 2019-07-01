@@ -7,7 +7,7 @@ class ManageProduct extends Component{
     // kenapa pakai state? karena state akan re-render ulang secara otomatis ketika data di dalamnya di update
     state = { 
         product:[],
-        editProduct:[]
+        selectedId:0
     }
 
     //componentDidMount merupakan function bawaan dari react
@@ -22,28 +22,55 @@ class ManageProduct extends Component{
 
     renderList = () =>{
         var hasil = this.state.product.map((val) =>{
-            return (
-                <tr>
-                    <td className='text-center'>{val.id}</td>
-                    <td style={{width:'250px'}}>{val.name}</td>
-                    <td style={{width:'300px'}}>{val.desc}</td>
-                    <td className='text-center'>{val.price}</td>
-                    <td style={{width:'400px'}} className='text-center'>
-                        <img className="w-25 img-fluid" src={val.src} alt="Product"/>
-                    </td>
-                    <td className="w-25">
-                        <button className='btn btn-success mx-3 text-center' onClick={this.onBtnEdit}>Edit</button>
-                        <button className='btn btn-danger text-center'>Delete</button>
-                    </td>
-                </tr>
-            )
+            if(val.id !== this.state.selectedId){
+                return (
+                    <tr>
+                        <td className='text-center'>{val.id}</td>
+                        <td style={{width:'250px'}}>{val.name}</td>
+                        <td style={{width:'300px'}}>{val.desc}</td>
+                        <td className='text-center'>{val.price}</td>
+                        <td style={{width:'400px'}} className='text-center'>
+                            <img className="w-25 img-fluid" src={val.src} alt="Product"/>
+                        </td>
+                        <td className="w-25">
+                            {/* yang edit, itu menggunakan this.setState({}) karena tujuannya state.selectedId akan digunakan untuk merender (save and cancel button) */}
+                            {/* delete tinggal memasukkkan sebuah parameter, karena dia tidak akan merender apa2 */}
+                            <button className='btn btn-success mx-3 text-center' onClick={()=>{this.setState({selectedId:val.id})}}>Edit</button>
+                            <button className='btn btn-danger text-center' onClick={()=>{this.deleteProduct(val.id)}}>Delete</button>
+                        </td>
+                    </tr>
+                )
+            } else{
+                return (
+                    <tr>
+                        <td className='text-center'>{val.id}</td>
+                        <td style={{width:'250px'}}>
+                            <input type='text' defaultValue={val.name} ref={(name)=>{this.editName = name}}/>
+                        </td>
+                        <td style={{width:'250px'}}>
+                            <input type='text' defaultValue={val.desc} ref={(desc)=>{this.editDesc = desc}}/>
+                        </td>
+                        <td style={{width:'250px'}}>
+                            <input type='text' defaultValue={val.price} ref={(price)=>{this.editPrice = price}}/>
+                        </td>
+                        <td style={{width:'250px'}}>
+                            <input type='text' defaultValue={val.src} ref={(src)=>{this.editSrc = src}}/>
+                        </td>
+                        <td className="w-25">
+                            <button className='btn btn-success mx-3 text-center' onClick={this.editProduct}>Save</button>
+                            <button className='btn btn-danger text-center' onClick={()=>{this.setState({selectedId: 0})}}>Cancel</button>
+                        </td>
+                    </tr>
+                )
+            }
+            
         })
         return hasil;
     }
 
     getProduct = () => {
         axios.get("http://localhost:2019/product").then((res)=>{
-            this.setState({product:res.data})
+            this.setState({product:res.data, selectedId:0})
         })
     }
 
@@ -64,7 +91,30 @@ class ManageProduct extends Component{
         }).then((res)=>{
             this.getProduct()
         })
+    }
 
+    deleteProduct = (id) =>{
+        axios.delete('http://localhost:2019/product/' + id).then(()=>{
+            this.getProduct()
+        })
+    }
+
+    editProduct = () =>{
+        //.put akan mengubah keseluruhan data yang dituju
+        //.patch akan mengubah data yang diubah saja dan tetap menyimpan properties yang sebelumnya
+        axios.patch('http://localhost:2019/product/'+this.state.selectedId ,
+            {
+                name: this.editName.value,
+                desc: this.editDesc.value,
+                price: this.editPrice.value,
+                src: this.editSrc.value
+            }
+        ).then((res)=>{
+            console.log(res)
+            this.getProduct()
+        }).catch(err =>{
+            console.log('Gagal')
+        })
     }
 
 

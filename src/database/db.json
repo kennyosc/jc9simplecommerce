@@ -21,17 +21,17 @@
   ],
   "product": [
     {
-      "id": 1,
       "name": "ASUS TUF fx505dd",
       "desc": "Best gaming laptop for the price",
-      "price": 9999999,
-      "src": "https://www.asus.com/media/global/products/4cDARfbRGBOGLKa1/P_setting_fff_1_90_end_600.png"
+      "price": "9999999",
+      "src": "https://www.asus.com/media/global/products/4cDARfbRGBOGLKa1/P_setting_fff_1_90_end_600.png",
+      "id": 1
     },
     {
       "id": 2,
       "name": "ASUS Zephyrus S Ultra Slim",
       "desc": "Thin Gaming Laptop",
-      "price": 20099000,
+      "price": "20099000",
       "src": "https://img-us1.asus.com/A/show/AW000706/2019/0126/AM0000009/201901AM260000009_15490692392002820033732.jpg"
     },
     {
@@ -68,6 +68,13 @@
       "price": "20100000",
       "src": "https://cdn.vox-cdn.com/thumbor/IFfF8bBXxqwHjIgmx1WA7H2JF_k=/0x0:2000x1126/1200x800/filters:focal(840x403:1160x723)/cdn.vox-cdn.com/uploads/chorus_image/image/62794716/02_X1_Carbon_Hero_Front_Facing_JD.0.png",
       "id": 7
+    },
+    {
+      "name": "Asus Zenbook Pro",
+      "desc": "Thin and light ASUS zenbook",
+      "price": "12899000",
+      "src": "https://images10.newegg.com/ProductImage/34-235-078-V19.jpg",
+      "id": 8
     }
   ]
 }
