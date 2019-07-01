@@ -2,7 +2,11 @@ import {combineReducers} from 'redux'
 
 const initAuth = {
     id: '',
-    username: ''
+    username: '',
+    // allCart digabungin ke user supaya didalam 1 user itu terdapat cart yang dia beli berserta dengan totalpricenya
+    allCart: [],
+    totalPrice: 0,
+    totalUnit: 0
 }
 
 const AuthReducer = (data = initAuth, action) =>{
@@ -23,12 +27,21 @@ const AuthReducer = (data = initAuth, action) =>{
                 id:'',
                 username:''
             }
-        break;    
+        break;
+        
+        case 'ADD_CART':
+            return{
+                ...data,
+                allCart: [...data.allCart, action.payload.allCart],
+                totalPrice: data.totalPrice + action.payload.totalPrice,
+                totalUnit: data.allCart.quantity + action.payload.allCart.quantity
+            }
+        break;
+
         default:
             return data
     }
 }
-
 
 export default combineReducers(
     {

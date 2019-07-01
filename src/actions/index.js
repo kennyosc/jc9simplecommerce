@@ -60,3 +60,25 @@ export const onLogoutUsers = () =>{
         type:'LOGOUT_SUCCESS'
     }
 }
+
+export const addCart = (id,unit) =>{
+    return(dispatch)=>{
+        axios.get('http://localhost:2019/product',{
+            params:{
+                id:id,
+            }
+        }).then((res)=>{
+            var addedProduct = res.data.find((val)=>val.id === id)
+            addedProduct.quantity = unit
+            dispatch(
+                {
+                type:"ADD_CART",
+                payload:{
+                allCart : addedProduct,
+                totalPrice : (addedProduct.price * addedProduct.quantity)
+                }
+            })
+    
+        })
+    }
+}

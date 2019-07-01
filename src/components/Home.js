@@ -12,7 +12,7 @@ class Home extends Component{
 
     getProduct = () => {
         axios.get("http://localhost:2019/product").then((res)=>{
-            this.setState({product:res.data, searchProduct: res.data})
+            this.setState({product:res.data, searchProduct: res.data, cart:res.data})
         })
     }
 
@@ -55,32 +55,11 @@ class Home extends Component{
         this.setState({product: arrSearch})
     }
 
-    handelAddFunc = (product) => {
-        const existingProductInCart = this.state.cart.filter(val=> val.id === product.id)
-        console.log('existingproductincart', existingProductInCart)
-
-        if(existingProductInCart.length > 0){
-            //it will get all the product without the one in the cart
-            const getRidOfProduct = this.state.cart.filter(val => val.id !== product.id) 
-            const updateCart = {
-                ...existingProductInCart[0] ,
-                units: existingProductInCart[0].units + product.units
-            }
-            this.setState({
-                cart: [...getRidOfProduct, updateCart]
-            })
-        } else{
-            this.setState({
-                cart: [...this.state.cart, product]
-            })
-        }
-        console.log(this.state.cart)
-    }
 
     renderList = () =>{
         return this.state.product.map((val)=>{
             return (
-                <ProductItem barang = {val} addFunc = {this.handelAddFunc}/>
+                <ProductItem barang = {val} cartData={this.state.cart}/>
             )
         })
     }

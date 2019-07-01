@@ -11,6 +11,7 @@ import Login from './Login'
 import Register from './Register'
 import ManageProduct from './ManageProduct'
 import DetailProduct from './DetailProduct'
+import Cart from './Cart'
 
 import {keepLogin} from '../actions'
 import {connect} from 'react-redux'
@@ -44,6 +45,7 @@ class App extends Component{
                         <Route path="/register" component={Register}/>
                         <Route path="/manageproduct" component={ManageProduct}/>
                         <Route path="/detailproduct/:id" component={DetailProduct}/>
+                        <Route path="/cart" component={Cart}/>
                     </div>
                     
                 </div>
