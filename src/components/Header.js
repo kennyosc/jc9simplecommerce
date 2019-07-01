@@ -86,11 +86,11 @@ class Header extends Component{
                   </NavItem>
                     <UncontrolledDropdown nav inNavbar>
                               <DropdownToggle nav caret>
-                                Options
+                                {this.props.user.username}
                               </DropdownToggle>
                               <DropdownMenu right>
                                 <DropdownItem>
-                                  OVO
+                                <Link to='/cart'>Cart</Link>                                  
                                 </DropdownItem>
                                 <DropdownItem>
                                   <Link to='/manageproduct'>Add Product</Link>

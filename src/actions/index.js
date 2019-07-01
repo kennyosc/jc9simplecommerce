@@ -19,21 +19,22 @@ export const onLoginUsers = (user,pass) =>{
             }
         }).then((res)=>{ // .then((res)) dalam axios dijalankan setelah dia MENUNGGU (ada durasi waktu respon) dari server API yang bersangkutan
             console.log(res)
-            const {id,username} = res.data[0]
             
             if(res.data.length > 0){
+            const {username,id} = res.data[0]
+                
                 dispatch( //dimana dispatch akan return object  type dan payload KEPADA REDUCERS. ketika di reducers, akan diproses seperti biasa
                     {
                         type: 'LOGIN_SUCCESS',
                         payload:{
                             id: id,
-                            username : username
+                            username : username 
                         }
                     }
                 )
 
                 //CREATE DATA UNTUK COOKIE
-                cookie.set('userName', {id,username} ,{path:'/'}) // bisa juga cookie.set('userName', res.data[0].username, {path:'/'})
+                cookie.set('userName', {username,id} ,{path:'/'}) // bisa juga cookie.set('userName', res.data[0].username, {path:'/'})
             } else{
                 console.log('Username / Password incorrect')
             }

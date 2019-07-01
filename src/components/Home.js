@@ -2,13 +2,12 @@ import React,{Component} from 'react'
 import axios from 'axios'
 import ProductItem from './ProductItem'
 
-
-
 class Home extends Component{
 
     state = {
         product: [],
-        searchProduct: []
+        searchProduct: [],
+        cart: []
     }
 
     getProduct = () => {
@@ -53,17 +52,37 @@ class Home extends Component{
                 )
             }
         })
-        console.log(arrSearch)
-        console.log(name)
-        console.log(min)
-        console.log(max)
         this.setState({product: arrSearch})
     }
 
+    handelAddFunc = (product) => {
+        const existingProductInCart = this.state.cart.filter(val=> val.id === product.id)
+        console.log('existingproductincart', existingProductInCart)
+
+        if(existingProductInCart.length > 0){
+            //it will get all the product without the one in the cart
+            const getRidOfProduct = this.state.cart.filter(val => val.id !== product.id) 
+            const updateCart = {
+                ...existingProductInCart[0] ,
+                units: existingProductInCart[0].units + product.units
+            }
+            this.setState({
+                cart: [...getRidOfProduct, updateCart]
+            })
+        } else{
+            this.setState({
+                cart: [...this.state.cart, product]
+            })
+        }
+        console.log(this.state.cart)
+    }
+
     renderList = () =>{
+        return this.state.product.map((val)=>{
             return (
-                <ProductItem showProduct = {this.state.product}/>
+                <ProductItem barang = {val} addFunc = {this.handelAddFunc}/>
             )
+        })
     }
 
     render(){
@@ -91,7 +110,7 @@ class Home extends Component{
                                         </div>
                                     </div>
                                 </div>
-                            <div className="row col-10">
+                            <div className='row col-10'>
                                 {this.renderList()}
                             </div>
                         </div>
