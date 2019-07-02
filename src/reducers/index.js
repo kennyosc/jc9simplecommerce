@@ -9,13 +9,13 @@ const initAuth = {
     totalUnit: 0
 }
 
-const AuthReducer = (data = initAuth, action) =>{
+const AuthReducer = (state = initAuth, action) =>{
     switch (action.type) {
         case "LOGIN_SUCCESS":
             return{
-                ...data, //OBJECT pada dasarnya akan mengganti keseluruhan object sebelumnya, jika di assign value baru
-                // ... data akan mengambil semua property dari data sebelumnya dan dimasukkan ke dalam object baru
-                // sehingga properti data yang lama tidak hilang
+                ...state, //OBJECT pada dasarnya akan mengganti keseluruhan object sebelumnya, jika di assign value baru
+                // ... state akan mengambil semua property dari state sebelumnya dan dimasukkan ke dalam object baru
+                // sehingga properti state yang lama tidak hilang
                 id: action.payload.id,
                 username: action.payload.username
             };
@@ -23,23 +23,61 @@ const AuthReducer = (data = initAuth, action) =>{
         
         case 'LOGOUT_SUCCESS':
             return{
-                ...data,
+                ...state,
                 id:'',
                 username:''
             }
         break;
         
         case 'ADD_CART':
-            return{
-                ...data,
-                allCart: [...data.allCart, action.payload.allCart],
-                totalPrice: data.totalPrice + action.payload.totalPrice,
-                totalUnit: data.allCart.quantity + action.payload.allCart.quantity
+            // kalau ada product sebelumnya itu gimana?
+            var existingProduct = state.allCart.find((val)=> val.id == action.payload.allCart.id)
+            if(existingProduct){
+                
+                for(var i =0; i< state.allCart.length; i++){
+                    if(state.allCart[i].id == action.payload.id){
+                        state.allCart[i].quantity += action.payload.allCart.quantity
+                    }
+                }
+
+
+                return{
+                    ...state,
+                    totalPrice: state.totalPrice + action.payload.totalPrice,
+                    totalUnit: state.allCart.quantity + action.payload.allCart.quantity
+                }
             }
+            // kalau tidak ada gimana?
+            else{
+                return{
+                    ...state,
+                    allCart: [...state.allCart, action.payload.allCart],
+                    totalPrice: state.totalPrice + action.payload.totalPrice,
+                    totalUnit: state.allCart.quantity + action.payload.allCart.quantity
+                }
+            }
+            
+        break;
+
+        case 'DELETE':
+            let itemToRemove = state.allCart.find((val)=> val.id == action.id)
+            let remainingItems = state.allCart.filter((val)=> val.id !== action.id)
+
+            let newTotalPrice = state.totalPrice - (itemToRemove.price * itemToRemove.quantity)
+            let newTotalUnit = state.totalUnit - itemToRemove.quantity
+            console.log(itemToRemove)
+            
+            return{
+                ...state,
+                allCart: remainingItems,
+                totalPrice: newTotalPrice,
+                totalUnit : newTotalUnit
+            }
+
         break;
 
         default:
-            return data
+            return state
     }
 }
 

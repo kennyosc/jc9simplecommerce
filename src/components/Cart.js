@@ -1,5 +1,6 @@
 import React,{Component} from 'react'
 import {connect} from 'react-redux'
+import {deleteCart} from '../actions/index'
 
 class Cart extends Component{
     renderCart = () =>{
@@ -12,10 +13,13 @@ class Cart extends Component{
                 <td style={{width:'300px'}}>{val.desc}</td>
                 <td className='text-center'>{val.price}</td>
                 <td className='text-center'>{val.quantity}</td>
-                <td style={{width:'400px'}} className='text-center'>
+                <td  className='text-center'>
                     <img className="w-25 img-fluid" src={val.src} alt="Product"/>
                 </td>
                 <td className='text-center'>{val.quantity * val.price}</td>
+                <td className='text-center'>
+                    <button className='btn btn-danger btn-sm' onClick={()=>this.props.deleteCart(val.id)}>Delete</button>
+                </td>
             </tr>)
         })
         return hasil
@@ -28,6 +32,7 @@ class Cart extends Component{
         for(var i = 0; i<this.props.cart.allCart.length; i++){
             totalQuantity += cart[i].quantity
         }
+        console.log(this.props.cart.allCart)
         console.log(this.props.cart.allCart.length)
         console.log(totalQuantity)
         return totalQuantity;
@@ -63,6 +68,7 @@ class Cart extends Component{
                             <th scope="col">QTY</th>
                             <th scope="col">PICTURE</th>
                             <th scope="col">TOTAL PRICE</th>
+                            <th scope="col">DELETE</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -83,4 +89,4 @@ const mapStateToProps = (state) =>{
     }
 }
 
-export default connect(mapStateToProps)(Cart)
+export default connect(mapStateToProps,{deleteCart})(Cart)

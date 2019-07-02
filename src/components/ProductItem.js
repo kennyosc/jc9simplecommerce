@@ -31,7 +31,7 @@ class ProductItem extends Component{
                         <h5 className='card-title'>{name}</h5>
                         <p className='card-text'>Rp{price},-</p>
                         <form>
-                            <input className='form-control' placeholder='Qty' onChange={this.handleChange} value={this.state.units}/>    
+                            <input className='form-control' placeholder='Qty' onChange={this.handleChange}/>    
                         </form>
                         {/* ini cara untuk menambahkan :id pada <Link> */}
                         <Link to={'/detailproduct/' + id}>

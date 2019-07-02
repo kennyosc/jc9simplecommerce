@@ -74,11 +74,19 @@ export const addCart = (id,unit) =>{
                 {
                 type:"ADD_CART",
                 payload:{
+                id: id,
                 allCart : addedProduct,
                 totalPrice : (addedProduct.price * addedProduct.quantity)
                 }
             })
     
         })
+    }
+}
+
+export const deleteCart = (id) =>{
+    return{
+        type:'DELETE',
+        id: id
     }
 }
