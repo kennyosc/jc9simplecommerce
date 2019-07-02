@@ -37,7 +37,7 @@ class ProductItem extends Component{
                  var existingProduct = res.data.find((val)=> val.productId == id)
 
                  if(existingProduct){
-                    axios.patch(`http://localhost:2019/cart/${existingProduct.productId}`, {
+                    axios.patch(`http://localhost:2019/cart/${existingProduct.id}`, {
                                quantity: unit + existingProduct.quantity
                             })
                  }  else if(existingProduct == undefined){

@@ -85,18 +85,28 @@
       "productDesc": "Best gaming laptop for the price",
       "productPrice": 9999999,
       "productSrc": "https://www.asus.com/media/global/products/4cDARfbRGBOGLKa1/P_setting_fff_1_90_end_600.png",
-      "quantity": 24,
+      "quantity": 60,
       "id": 1
     },
     {
       "userId": 2,
-      "productId": 2,
-      "productName": "ASUS Zephyrus S Ultra Slim",
-      "productDesc": "Thin Gaming Laptop",
-      "productPrice": 20099000,
-      "productSrc": "https://img-us1.asus.com/A/show/AW000706/2019/0126/AM0000009/201901AM260000009_15490692392002820033732.jpg",
-      "quantity": 6,
+      "productId": 8,
+      "productName": "Asus Zenbook Pro",
+      "productDesc": "Thin and light ASUS zenbook",
+      "productPrice": 12899000,
+      "productSrc": "https://images10.newegg.com/ProductImage/34-235-078-V19.jpg",
+      "quantity": 10,
       "id": 2
+    },
+    {
+      "userId": 2,
+      "productId": 7,
+      "productName": "Lenovo Thinkpad X1 Carbon i7",
+      "productDesc": "The best business laptop ever",
+      "productPrice": 20100000,
+      "productSrc": "https://cdn.vox-cdn.com/thumbor/IFfF8bBXxqwHjIgmx1WA7H2JF_k=/0x0:2000x1126/1200x800/filters:focal(840x403:1160x723)/cdn.vox-cdn.com/uploads/chorus_image/image/62794716/02_X1_Carbon_Hero_Front_Facing_JD.0.png",
+      "quantity": 10,
+      "id": 3
     }
   ]
 }

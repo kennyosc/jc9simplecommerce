@@ -33,7 +33,7 @@ class Cart extends Component{
         //.patch akan mengubah data yang diubah saja dan tetap menyimpan properties yang sebelumnya
         axios.patch('http://localhost:2019/cart/'+this.state.selectedId ,
             {
-               quantity: this.quantity.value
+               quantity: parseInt(this.quantity.value)
             }
         ).then((res)=>{
             console.log(res)
@@ -49,26 +49,26 @@ class Cart extends Component{
                 if(val.id !== this.state.selectedId){
                     return(
                         <tr>
-                            <td style={{width:'250px'}}>{val.productName}</td>
-                            <td style={{width:'300px'}}>{val.productDesc}</td>
+                            <td style={{width:'100px'}}>{val.productName}</td>
+                            <td style={{width:'200px'}}>{val.productDesc}</td>
                             <td className='text-center'>{val.productPrice}</td>
                             <td className='text-center'>{val.quantity}</td>
                             <td  className='text-center'>
                                 <img className="w-25 img-fluid" src={val.productSrc} alt="Product"/>
                             </td>
                             <td className='text-center'>{val.quantity * val.productPrice}</td>
-                            <td className='text-center'>
+                            <td className='text-center' style={{width:'100px'}}>
                                 <button className='btn btn-danger btn-sm' onClick={()=>this.deleteCart(val.id)}>Delete</button>
-                                <button className='btn btn-warning btn-sm' onClick={()=>{this.setState({selectedId:val.id})}}>Edit</button>
+                                <button className='btn btn-warning btn-sm'  onClick={()=>{this.setState({selectedId:val.id})}}>Edit</button>
                             </td>
                         </tr>)
                 } else{
                     return (
                         <tr>
-                            <td style={{width:'250px'}}>{val.productName}</td>
-                            <td style={{width:'300px'}}>{val.productDesc}</td>
+                            <td style={{width:'100px'}}>{val.productName}</td>
+                            <td style={{width:'200px'}}>{val.productDesc}</td>
                             <td className='text-center'>{val.productPrice}</td>
-                            <td style={{width:'250px'}}>
+                            <td>
                                 <input type='text' defaultValue={val.quantity} ref={(quantity)=>{this.quantity = quantity}}/>
                             </td>
                             <td  className='text-center'>
