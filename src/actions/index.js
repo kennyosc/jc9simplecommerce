@@ -61,7 +61,7 @@ export const onLogoutUsers = () =>{
     }
 }
 
-// export const addCart = (id,unit) =>{
+export const addCart = (id,unit) =>{
     // return(dispatch)=>{
     //     axios.get('http://localhost:2019/product',{
     //         params:{
@@ -85,7 +85,12 @@ export const onLogoutUsers = () =>{
 
     //post product ke cart
     
-// }
+}
 
-
+export const deleteCart = (id) =>{
+    // return{
+    //     type:'DELETE',
+    //     id: id
+    // }
+}
 

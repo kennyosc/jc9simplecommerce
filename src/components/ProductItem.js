@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import {addCart} from '../actions/index'
 import {connect} from 'react-redux'
 import axios from 'axios'
 
@@ -12,11 +13,11 @@ class ProductItem extends Component{
         totalUnits: 0
     }
 
-    componentDidMount(){
-        axios.get('http://localhost:2019/cart').then((res)=>{
-            this.setState({cart : res.data})
-        })
-    }
+    // componentDidMount(){
+    //     axios.get('http://localhost:2019/cart').then((res)=>{
+    //         this.setState({cart : res.data})
+    //     })
+    // }
 
     handleAddToCart = (name,id,price,src,desc,unit) =>{
         unit = parseInt(this.state.unit)
@@ -24,28 +25,58 @@ class ProductItem extends Component{
         // this.props.addCart(id,unit)
         
         console.log(this.state.cart)
-        let sameProductId = this.state.cart.find(el => el.productId == id )
-        console.log(sameProductId)
+        // let sameProductId = this.state.cart.find(el => el.productId == id )
+        // console.log(sameProductId)
 
+        axios.get('http://localhost:2019/cart',{
+            params:{
+                userId: this.props.user.id
+            }
+        }).then((res)=>{
+                 console.log(res)
+                 var existingProduct = res.data.find((val)=> val.productId == id)
+
+                 if(existingProduct){
+                    axios.patch(`http://localhost:2019/cart/${existingProduct.productId}`, {
+                               quantity: unit + existingProduct.quantity
+                            })
+                 }  else if(existingProduct == undefined){
+                    axios.post('http://localhost:2019/cart',{
+                                userId: userId,
+                                productId : id,
+                                productName : name,
+                                productDesc : desc,
+                                productPrice : parseInt(price),
+                                productSrc : src,
+                                quantity: unit
+                            }).then((res)=>{
+                                console.log(res)
+                                console.log('Input data berhasil')
+                            })
+                 }
+        })
         //kalau productId == id input, maka nambah quantity
-        if(sameProductId){
-            axios.patch(`http://localhost:2019/cart/${sameProductId.id}`, {
-               quantity: unit + sameProductId.quantity
-            })
-        }else {
-            axios.post('http://localhost:2019/cart',{
-                userId: userId,
-                productId : id,
-                productName : name,
-                productDesc : desc,
-                productPrice : parseInt(price),
-                productSrc : src,
-                quantity: unit
-            }).then((res)=>{
-                console.log(res)
-                console.log('Input data berhasil')
-            })
-        }
+        // if(sameProductId !== undefined){
+        //     console.log('AAAAAAAAAAAAAAAAAAAA')
+           
+        //     axios.patch(`http://localhost:2019/cart/${sameProductId.id}`, {
+        //        quantity: unit + sameProductId.quantity
+        //     })
+             
+        // }else if(sameProductId == undefined){
+        //     axios.post('http://localhost:2019/cart',{
+        //         userId: userId,
+        //         productId : id,
+        //         productName : name,
+        //         productDesc : desc,
+        //         productPrice : parseInt(price),
+        //         productSrc : src,
+        //         quantity: unit
+        //     }).then((res)=>{
+        //         console.log(res)
+        //         console.log('Input data berhasil')
+        //     })
+        // }
 
       }
 
@@ -82,4 +113,4 @@ const mapStateToProps = (state) =>{
     }
 }
 
-export default connect(mapStateToProps)(ProductItem)
+export default connect(mapStateToProps,{addCart})(ProductItem)

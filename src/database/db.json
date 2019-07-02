@@ -77,5 +77,26 @@
       "id": 8
     }
   ],
-  "cart": []
+  "cart": [
+    {
+      "userId": 2,
+      "productId": 1,
+      "productName": "ASUS TUF fx505dd",
+      "productDesc": "Best gaming laptop for the price",
+      "productPrice": 9999999,
+      "productSrc": "https://www.asus.com/media/global/products/4cDARfbRGBOGLKa1/P_setting_fff_1_90_end_600.png",
+      "quantity": 24,
+      "id": 1
+    },
+    {
+      "userId": 2,
+      "productId": 2,
+      "productName": "ASUS Zephyrus S Ultra Slim",
+      "productDesc": "Thin Gaming Laptop",
+      "productPrice": 20099000,
+      "productSrc": "https://img-us1.asus.com/A/show/AW000706/2019/0126/AM0000009/201901AM260000009_15490692392002820033732.jpg",
+      "quantity": 6,
+      "id": 2
+    }
+  ]
 }

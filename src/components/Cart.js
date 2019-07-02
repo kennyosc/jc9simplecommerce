@@ -6,7 +6,8 @@ import {Redirect} from 'react-router-dom'
 class Cart extends Component{
 
     state={
-        allProduct:[]
+        allProduct:[],
+        selectedId : 0
     }
 
     componentDidMount(){
@@ -27,23 +28,63 @@ class Cart extends Component{
         })
     }
 
+    editProduct = () =>{
+        //.put akan mengubah keseluruhan data yang dituju
+        //.patch akan mengubah data yang diubah saja dan tetap menyimpan properties yang sebelumnya
+        axios.patch('http://localhost:2019/cart/'+this.state.selectedId ,
+            {
+               quantity: this.quantity.value
+            }
+        ).then((res)=>{
+            console.log(res)
+            this.getProduct()
+        }).catch(err =>{
+            console.log('Gagal')
+        })
+    }
+
     renderCart = () =>{
         var hasil = this.state.allProduct.map((val)=>{
             if(this.props.user.id == val.userId){
-                return(
-                    <tr>
-                        <td style={{width:'250px'}}>{val.productName}</td>
-                        <td style={{width:'300px'}}>{val.productDesc}</td>
-                        <td className='text-center'>{val.productPrice}</td>
-                        <td className='text-center'>{val.quantity}</td>
-                        <td  className='text-center'>
-                            <img className="w-25 img-fluid" src={val.productSrc} alt="Product"/>
-                        </td>
-                        <td className='text-center'>{val.quantity * val.productPrice}</td>
-                        <td className='text-center'>
-                            <button className='btn btn-danger btn-sm' onClick={()=>this.deleteCart(val.id)}>Delete</button>
-                        </td>
-                    </tr>)
+                if(val.id !== this.state.selectedId){
+                    return(
+                        <tr>
+                            <td style={{width:'250px'}}>{val.productName}</td>
+                            <td style={{width:'300px'}}>{val.productDesc}</td>
+                            <td className='text-center'>{val.productPrice}</td>
+                            <td className='text-center'>{val.quantity}</td>
+                            <td  className='text-center'>
+                                <img className="w-25 img-fluid" src={val.productSrc} alt="Product"/>
+                            </td>
+                            <td className='text-center'>{val.quantity * val.productPrice}</td>
+                            <td className='text-center'>
+                                <button className='btn btn-danger btn-sm' onClick={()=>this.deleteCart(val.id)}>Delete</button>
+                                <button className='btn btn-warning btn-sm' onClick={()=>{this.setState({selectedId:val.id})}}>Edit</button>
+                            </td>
+                        </tr>)
+                } else{
+                    return (
+                        <tr>
+                            <td style={{width:'250px'}}>{val.productName}</td>
+                            <td style={{width:'300px'}}>{val.productDesc}</td>
+                            <td className='text-center'>{val.productPrice}</td>
+                            <td style={{width:'250px'}}>
+                                <input type='text' defaultValue={val.quantity} ref={(quantity)=>{this.quantity = quantity}}/>
+                            </td>
+                            <td  className='text-center'>
+                                <img className="w-25 img-fluid" src={val.productSrc} alt="Product"/>
+                            </td>
+                            <td className='text-center'>{val.quantity * val.productPrice}</td>
+                            <td className='text-center'></td>
+                            
+                            <td className="w-25">
+                                <button className='btn btn-success mx-3 text-center' onClick={this.editProduct}>Save</button>
+                                <button className='btn btn-danger text-center' onClick={()=>{this.setState({selectedId: 0})}}>Cancel</button>
+                            </td>
+                        </tr>
+                    )
+                }
+                
             } else{
                 return(
                 <Redirect to='/login'/>
@@ -106,7 +147,7 @@ class Cart extends Component{
                             <th scope="col">QTY</th>
                             <th scope="col">PICTURE</th>
                             <th scope="col">TOTAL PRICE</th>
-                            <th scope="col">DELETE</th>
+                            <th scope="col">ACTIONS</th>
                         </tr>
                     </thead>
                     <tbody>
