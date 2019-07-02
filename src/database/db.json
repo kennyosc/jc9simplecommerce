@@ -17,6 +17,12 @@
       "email": "hennytirta@gmail.com",
       "password": "password",
       "id": 3
+    },
+    {
+      "username": "reinhart",
+      "email": "reinhart",
+      "password": "reinhart",
+      "id": 4
     }
   ],
   "product": [
@@ -80,33 +86,73 @@
   "cart": [
     {
       "userId": 2,
+      "productId": 2,
+      "productName": "ASUS Zephyrus S Ultra Slim",
+      "productDesc": "Thin Gaming Laptop",
+      "productPrice": 20099000,
+      "productSrc": "https://img-us1.asus.com/A/show/AW000706/2019/0126/AM0000009/201901AM260000009_15490692392002820033732.jpg",
+      "quantity": 2,
+      "id": 1
+    },
+    {
+      "userId": 2,
+      "productId": 3,
+      "productName": "Macbook Pro",
+      "productDesc": "Apple",
+      "productPrice": 25450000,
+      "productSrc": "https://i2.wp.com/nigerianprice.com/wp-content/uploads/2018/05/macbook-pro-price-in-nigeria.png?fit=557%2C343&ssl=1",
+      "quantity": 1,
+      "id": 2
+    },
+    {
+      "userId": 1,
       "productId": 1,
       "productName": "ASUS TUF fx505dd",
       "productDesc": "Best gaming laptop for the price",
       "productPrice": 9999999,
       "productSrc": "https://www.asus.com/media/global/products/4cDARfbRGBOGLKa1/P_setting_fff_1_90_end_600.png",
-      "quantity": 60,
-      "id": 1
+      "quantity": 3,
+      "id": 3
     },
     {
-      "userId": 2,
+      "userId": 1,
+      "productId": 2,
+      "productName": "ASUS Zephyrus S Ultra Slim",
+      "productDesc": "Thin Gaming Laptop",
+      "productPrice": 20099000,
+      "productSrc": "https://img-us1.asus.com/A/show/AW000706/2019/0126/AM0000009/201901AM260000009_15490692392002820033732.jpg",
+      "quantity": 1,
+      "id": 4
+    },
+    {
+      "userId": 1,
+      "productId": 3,
+      "productName": "Macbook Pro",
+      "productDesc": "Apple",
+      "productPrice": 25450000,
+      "productSrc": "https://i2.wp.com/nigerianprice.com/wp-content/uploads/2018/05/macbook-pro-price-in-nigeria.png?fit=557%2C343&ssl=1",
+      "quantity": 1,
+      "id": 5
+    },
+    {
+      "userId": 4,
       "productId": 8,
       "productName": "Asus Zenbook Pro",
       "productDesc": "Thin and light ASUS zenbook",
       "productPrice": 12899000,
       "productSrc": "https://images10.newegg.com/ProductImage/34-235-078-V19.jpg",
-      "quantity": 10,
-      "id": 2
+      "quantity": 8,
+      "id": 6
     },
     {
-      "userId": 2,
-      "productId": 7,
-      "productName": "Lenovo Thinkpad X1 Carbon i7",
-      "productDesc": "The best business laptop ever",
-      "productPrice": 20100000,
-      "productSrc": "https://cdn.vox-cdn.com/thumbor/IFfF8bBXxqwHjIgmx1WA7H2JF_k=/0x0:2000x1126/1200x800/filters:focal(840x403:1160x723)/cdn.vox-cdn.com/uploads/chorus_image/image/62794716/02_X1_Carbon_Hero_Front_Facing_JD.0.png",
-      "quantity": 10,
-      "id": 3
+      "userId": 4,
+      "productId": 3,
+      "productName": "Macbook Pro",
+      "productDesc": "Apple",
+      "productPrice": 25450000,
+      "productSrc": "https://i2.wp.com/nigerianprice.com/wp-content/uploads/2018/05/macbook-pro-price-in-nigeria.png?fit=557%2C343&ssl=1",
+      "quantity": 4,
+      "id": 7
     }
   ]
 }

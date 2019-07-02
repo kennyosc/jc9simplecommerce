@@ -16,7 +16,7 @@ import {
     DropdownItem,
     Alert } from 'reactstrap'
     
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {onLogoutUsers} from '../actions/index'
 
@@ -39,6 +39,11 @@ class Header extends Component{
       }
       onDismiss() {
         this.setState({ visible: false });
+      }
+
+      handleLogout = () =>{
+
+        this.props.onLogoutUsers()
       }
 
     render(){
@@ -96,7 +101,7 @@ class Header extends Component{
                                   <Link to='/manageproduct'>Add Product</Link>
                                 </DropdownItem>
                                 <DropdownItem divider />
-                                <Button className="dropdown-item btn btn-warning" onClick={this.props.onLogoutUsers}>Logout</Button>
+                                <Button className="dropdown-item btn btn-warning" onClick={this.handleLogout}>Logout</Button>
                               </DropdownMenu>
                             </UncontrolledDropdown>
                             </Nav>

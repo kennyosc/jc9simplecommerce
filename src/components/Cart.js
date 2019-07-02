@@ -44,8 +44,11 @@ class Cart extends Component{
     }
 
     renderCart = () =>{
-        var hasil = this.state.allProduct.map((val)=>{
-            if(this.props.user.id == val.userId){
+            var findId = this.state.allProduct.filter((val)=>val.userId == this.props.user.id)
+            console.log(findId)
+
+            var hasil = findId.map((val)=>{
+            if(this.props.user.username !== ''){
                 if(val.id !== this.state.selectedId){
                     return(
                         <tr>
@@ -85,10 +88,8 @@ class Cart extends Component{
                     )
                 }
                 
-            } else{
-                return(
-                <Redirect to='/login'/>
-                )
+            } else if(this.props.user.username === ''){
+                return <Redirect to='/login'/>
             }
             
         })
@@ -102,7 +103,10 @@ class Cart extends Component{
         var cart = this.state.allProduct
 
         for(var i = 0; i< cart.length; i++){
-            totalQuantity += cart[i].quantity
+            
+            if(this.state.allProduct[i].userId == this.props.user.id){
+                totalQuantity += cart[i].quantity
+            }
         }
         return totalQuantity;
     }
@@ -112,7 +116,10 @@ class Cart extends Component{
         var cart = this.state.allProduct
 
         for(var i = 0; i< cart.length; i++){
-            totalPrice += (cart[i].productPrice * cart[i].quantity)
+            if(this.state.allProduct[i].userId == this.props.user.id){
+                totalPrice += (cart[i].productPrice * cart[i].quantity)
+
+            }
         }
         return totalPrice;
     }
@@ -137,26 +144,31 @@ class Cart extends Component{
     render(){
         return(
             <div className="container">
-                <h1 className="display-4 text-center">My Cart</h1>
-                <table className="table table-hover mb-5">
-                    <thead>
-                        <tr className='text-center'>
-                            <th scope="col">NAME</th>
-                            <th scope="col">DESC</th>
-                            <th scope="col">PRICE</th>
-                            <th scope="col">QTY</th>
-                            <th scope="col">PICTURE</th>
-                            <th scope="col">TOTAL PRICE</th>
-                            <th scope="col">ACTIONS</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.renderCart()}
-                    </tbody>
-                </table>
-                <div>
-                    {this.renderOrderTotal()}
-                </div>
+                    {this.props.user.username !== '' ? (
+                        <div>
+                            <h1 className="display-4 text-center">My Cart</h1>
+                                <table className="table table-hover mb-5">
+                                    <thead>
+                                        <tr className='text-center'>
+                                            <th scope="col">NAME</th>
+                                            <th scope="col">DESC</th>
+                                            <th scope="col">PRICE</th>
+                                            <th scope="col">QTY</th>
+                                            <th scope="col">PICTURE</th>
+                                            <th scope="col">TOTAL PRICE</th>
+                                            <th scope="col">ACTIONS</th>
+                                        </tr>
+                                    </thead>
+                                <tbody>
+                                    {this.renderCart()}
+                                </tbody>
+                            </table>
+                            <div>
+                                {this.renderOrderTotal()}
+                            </div>
+                        </div>
+                    ) : <Redirect to='/login'/>}
+                
             </div>
         )
     }
