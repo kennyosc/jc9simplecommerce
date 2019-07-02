@@ -29,52 +29,51 @@ const AuthReducer = (state = initAuth, action) =>{
             }
         break;
         
-        case 'ADD_CART':
-            // kalau ada product sebelumnya itu gimana?
-            var existingProduct = state.allCart.find((val)=> val.id == action.payload.allCart.id)
-            if(existingProduct){
+        // case 'ADD_CART':
+        //     // kalau ada product sebelumnya itu gimana?
+        //     var existingProduct = state.allCart.find((val)=> val.id == action.payload.allCart.id)
+        //     if(existingProduct){
                 
-                for(var i =0; i< state.allCart.length; i++){
-                    if(state.allCart[i].id == action.payload.id){
-                        state.allCart[i].quantity += action.payload.allCart.quantity
-                    }
-                }
+        //         for(var i =0; i< state.allCart.length; i++){
+        //             if(state.allCart[i].id == action.payload.id){
+        //                 state.allCart[i].quantity += action.payload.allCart.quantity
+        //             }
+        //         }
 
-
-                return{
-                    ...state,
-                    totalPrice: state.totalPrice + action.payload.totalPrice,
-                    totalUnit: state.allCart.quantity + action.payload.allCart.quantity
-                }
-            }
-            // kalau tidak ada gimana?
-            else{
-                return{
-                    ...state,
-                    allCart: [...state.allCart, action.payload.allCart],
-                    totalPrice: state.totalPrice + action.payload.totalPrice,
-                    totalUnit: state.allCart.quantity + action.payload.allCart.quantity
-                }
-            }
+        //         return{
+        //             ...state,
+        //             totalPrice: state.totalPrice + action.payload.totalPrice,
+        //             totalUnit: state.allCart.quantity + action.payload.allCart.quantity
+        //         }
+        //     }
+        //     // kalau tidak ada gimana?
+        //     else{
+        //         return{
+        //             ...state,
+        //             allCart: [...state.allCart, action.payload.allCart],
+        //             totalPrice: state.totalPrice + action.payload.totalPrice,
+        //             totalUnit: state.allCart.quantity + action.payload.allCart.quantity
+        //         }
+        //     }
             
-        break;
+        // break;
 
-        case 'DELETE':
-            let itemToRemove = state.allCart.find((val)=> val.id == action.id)
-            let remainingItems = state.allCart.filter((val)=> val.id !== action.id)
+        // case 'DELETE':
+        //     let itemToRemove = state.allCart.find((val)=> val.id == action.id)
+        //     let remainingItems = state.allCart.filter((val)=> val.id !== action.id)
 
-            let newTotalPrice = state.totalPrice - (itemToRemove.price * itemToRemove.quantity)
-            let newTotalUnit = state.totalUnit - itemToRemove.quantity
-            console.log(itemToRemove)
+        //     let newTotalPrice = state.totalPrice - (itemToRemove.price * itemToRemove.quantity)
+        //     let newTotalUnit = state.totalUnit - itemToRemove.quantity
+        //     console.log(itemToRemove)
             
-            return{
-                ...state,
-                allCart: remainingItems,
-                totalPrice: newTotalPrice,
-                totalUnit : newTotalUnit
-            }
+        //     return{
+        //         ...state,
+        //         allCart: remainingItems,
+        //         totalPrice: newTotalPrice,
+        //         totalUnit : newTotalUnit
+        //     }
 
-        break;
+        // break;
 
         default:
             return state

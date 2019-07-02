@@ -1,41 +1,79 @@
 import React,{Component} from 'react'
 import {connect} from 'react-redux'
-import {deleteCart} from '../actions/index'
+import axios from 'axios'
+import {Redirect} from 'react-router-dom'
 
 class Cart extends Component{
+
+    state={
+        allProduct:[]
+    }
+
+    componentDidMount(){
+        axios.get('http://localhost:2019/cart').then((res)=>{
+            this.setState({allProduct:res.data})
+        })
+    }
+
+    getProduct = () =>{
+        axios.get('http://localhost:2019/cart').then((res)=>{
+            this.setState({allProduct:res.data})
+        })
+    }
+
+    deleteCart = (id) =>{
+        axios.delete('http://localhost:2019/cart/' + id).then((res)=>{
+            this.getProduct()
+        })
+    }
+
     renderCart = () =>{
-        var cart = this.props.cart.allCart
-        
-        var hasil = cart.map((val)=>{
-            return(
-            <tr>
-                <td style={{width:'250px'}}>{val.name}</td>
-                <td style={{width:'300px'}}>{val.desc}</td>
-                <td className='text-center'>{val.price}</td>
-                <td className='text-center'>{val.quantity}</td>
-                <td  className='text-center'>
-                    <img className="w-25 img-fluid" src={val.src} alt="Product"/>
-                </td>
-                <td className='text-center'>{val.quantity * val.price}</td>
-                <td className='text-center'>
-                    <button className='btn btn-danger btn-sm' onClick={()=>this.props.deleteCart(val.id)}>Delete</button>
-                </td>
-            </tr>)
+        var hasil = this.state.allProduct.map((val)=>{
+            if(this.props.user.id == val.userId){
+                return(
+                    <tr>
+                        <td style={{width:'250px'}}>{val.productName}</td>
+                        <td style={{width:'300px'}}>{val.productDesc}</td>
+                        <td className='text-center'>{val.productPrice}</td>
+                        <td className='text-center'>{val.quantity}</td>
+                        <td  className='text-center'>
+                            <img className="w-25 img-fluid" src={val.productSrc} alt="Product"/>
+                        </td>
+                        <td className='text-center'>{val.quantity * val.productPrice}</td>
+                        <td className='text-center'>
+                            <button className='btn btn-danger btn-sm' onClick={()=>this.deleteCart(val.id)}>Delete</button>
+                        </td>
+                    </tr>)
+            } else{
+                return(
+                <Redirect to='/login'/>
+                )
+            }
+            
         })
         return hasil
     }
 
+
+
     showTotalQuantity = () =>{
         var totalQuantity = 0
-        var cart = this.props.cart.allCart
+        var cart = this.state.allProduct
 
-        for(var i = 0; i<this.props.cart.allCart.length; i++){
+        for(var i = 0; i< cart.length; i++){
             totalQuantity += cart[i].quantity
         }
-        console.log(this.props.cart.allCart)
-        console.log(this.props.cart.allCart.length)
-        console.log(totalQuantity)
         return totalQuantity;
+    }
+
+    showTotalPrice = () =>{
+        var totalPrice = 0
+        var cart = this.state.allProduct
+
+        for(var i = 0; i< cart.length; i++){
+            totalPrice += (cart[i].productPrice * cart[i].quantity)
+        }
+        return totalPrice;
     }
 
     renderOrderTotal=()=>{
@@ -46,7 +84,7 @@ class Cart extends Component{
                     <div class="card-body">
                         <h5 class="card-title">TOTAL</h5>
                         <p class="card-text">Quantity: {this.showTotalQuantity()}</p>
-                        <p class="card-text">Total price: Rp{this.props.cart.totalPrice},-</p>
+                        <p class="card-text">Total price: Rp{this.showTotalPrice()},-</p>
                         <button className="btn btn-primary">Checkout</button>
                     </div>
                     </div>
@@ -85,8 +123,8 @@ class Cart extends Component{
 
 const mapStateToProps = (state) =>{
     return{
-        cart : state.auth
+        user : state.auth
     }
 }
 
-export default connect(mapStateToProps,{deleteCart})(Cart)
+export default connect(mapStateToProps)(Cart)

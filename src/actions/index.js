@@ -61,32 +61,31 @@ export const onLogoutUsers = () =>{
     }
 }
 
-export const addCart = (id,unit) =>{
-    return(dispatch)=>{
-        axios.get('http://localhost:2019/product',{
-            params:{
-                id:id,
-            }
-        }).then((res)=>{
-            var addedProduct = res.data.find((val)=>val.id === id)
-            addedProduct.quantity = unit
-            dispatch(
-                {
-                type:"ADD_CART",
-                payload:{
-                id: id,
-                allCart : addedProduct,
-                totalPrice : (addedProduct.price * addedProduct.quantity)
-                }
-            })
+// export const addCart = (id,unit) =>{
+    // return(dispatch)=>{
+    //     axios.get('http://localhost:2019/product',{
+    //         params:{
+    //             id:id,
+    //         }
+    //     }).then((res)=>{
+    //         var addedProduct = res.data.find((val)=>val.id === id)
+    //         addedProduct.quantity = unit
+    //         dispatch(
+    //             {
+    //             type:"ADD_CART",
+    //             payload:{
+    //             id: id,
+    //             allCart : addedProduct,
+    //             totalPrice : (addedProduct.price * addedProduct.quantity)
+    //             }
+    //         })
     
-        })
-    }
-}
+    //     })
+    // }
 
-export const deleteCart = (id) =>{
-    return{
-        type:'DELETE',
-        id: id
-    }
-}
+    //post product ke cart
+    
+// }
+
+
+
