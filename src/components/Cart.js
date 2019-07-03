@@ -134,9 +134,9 @@ class Cart extends Component{
             axios.delete(' http://localhost:2019/cart/' + checkoutArr[i].id).then(res=>{
                 this.getProduct()
             })
-
         }
 
+        alert('Thank you for your payment!')
     }
 
     // renderOrderTotal=()=>{
@@ -156,7 +156,7 @@ class Cart extends Component{
     //     ) 
     // }
 
-renderOrderTotal=()=>{
+renderCheckout=()=>{
     var findId = this.state.allProduct.filter((val)=>val.userId == this.props.user.id)
     console.log(findId)
 
@@ -242,7 +242,7 @@ renderOrderTotal=()=>{
                                             </tr>
                                         </thead>
                                     <tbody>
-                                        {this.renderOrderTotal()}
+                                        {this.renderCheckout()}
                                         <tr className='text-center'>
                                             <td colSpan="4"><b>TOTAL</b></td>
                                             <td>Rp {this.showTotalPrice()},-</td>

@@ -99,7 +99,7 @@ class ProductItem extends Component{
                         <h5 className='card-title'>{name}</h5>
                         <p className='card-text'>Rp{price.toLocaleString('IN')},-</p>
                         <form>
-                            <input className='form-control' placeholder='Qty' onChange={this.handleChange}/>    
+                            <input className='form-control' placeholder='Qty' type='number' min='1' onChange={this.handleChange}/>    
                         </form>
                         {/* ini cara untuk menambahkan :id pada <Link> */}
                         <Link to={'/detailproduct/' + id}>
