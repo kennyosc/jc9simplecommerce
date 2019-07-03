@@ -80,9 +80,9 @@ class Cart extends Component{
                             <td  className='text-center'>
                                 <img className="w-25 img-fluid" src={val.productSrc} alt="Product"/>
                             </td>
-                            <td style={{width:'300px'}}>
-                                <button className='btn btn-success mx-3 text-center' onClick={this.editProduct}>Save</button>
-                                <button className='btn btn-danger text-center' onClick={()=>{this.setState({selectedId: 0})}}>Cancel</button>
+                            <td className='text-center' style={{width:'300px'}}>
+                                <button className='btn btn-success btn-sm mx-3 ml-3 text-center' onClick={this.editProduct}>Save</button>
+                                <button className='btn btn-danger btn-sm text-center' onClick={()=>{this.setState({selectedId: 0})}}>Cancel</button>
                             </td>
                         </tr>
                     )
