@@ -29,7 +29,7 @@
     {
       "name": "ASUS TUF fx505dd",
       "desc": "Best gaming laptop for the price",
-      "price": "9999999",
+      "price": 9999999,
       "src": "https://www.asus.com/media/global/products/4cDARfbRGBOGLKa1/P_setting_fff_1_90_end_600.png",
       "id": 1
     },
@@ -37,7 +37,7 @@
       "id": 2,
       "name": "ASUS Zephyrus S Ultra Slim",
       "desc": "Thin Gaming Laptop",
-      "price": "20099000",
+      "price": 20099000,
       "src": "https://img-us1.asus.com/A/show/AW000706/2019/0126/AM0000009/201901AM260000009_15490692392002820033732.jpg"
     },
     {
@@ -50,90 +50,40 @@
     {
       "name": "Lenovo Legion Y540",
       "desc": "Minimalist gaming laptop",
-      "price": "14950000",
+      "price": 14950000,
       "src": "https://www.lenovo.com/medias/lenovo-legion-y540-17-hero.png?context=bWFzdGVyfHJvb3R8NDEyMjQ5fGltYWdlL3BuZ3xoMGQvaDUzLzk5ODY4MzEzMTkwNzAucG5nfGVlZTdjM2Y4Mjk5ZjEzYWMyMTE5YThmNzY0MGFkNDc3MmFkY2IxNDg3ZjgyMjg4ZTBlMWNkMGZlNTZlOTIyNDk",
       "id": 4
     },
     {
       "name": "ASUS VivoBook 15 X510ZA",
       "desc": "Asus Vivobook thin and light laptop",
-      "price": "5999000",
+      "price": 5999000,
       "src": "https://www.asus.com/media/global/products/Tb6SRojBvAkM9HYH/P_setting_fff_1_90_end_600.png",
       "id": 5
     },
     {
       "name": "Lenovo IDEAPAD 330s",
       "desc": "Thin bezel, simple design",
-      "price": "7050000",
+      "price": 7050000,
       "src": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6291/6291881_sd.jpg",
       "id": 6
     },
     {
       "name": "Lenovo Thinkpad X1 Carbon i7",
       "desc": "The best business laptop ever",
-      "price": "20100000",
+      "price": 20100000,
       "src": "https://cdn.vox-cdn.com/thumbor/IFfF8bBXxqwHjIgmx1WA7H2JF_k=/0x0:2000x1126/1200x800/filters:focal(840x403:1160x723)/cdn.vox-cdn.com/uploads/chorus_image/image/62794716/02_X1_Carbon_Hero_Front_Facing_JD.0.png",
       "id": 7
     },
     {
       "name": "Asus Zenbook Pro",
       "desc": "Thin and light ASUS zenbook",
-      "price": "12899000",
+      "price": 12899000,
       "src": "https://images10.newegg.com/ProductImage/34-235-078-V19.jpg",
       "id": 8
     }
   ],
   "cart": [
-    {
-      "userId": 2,
-      "productId": 2,
-      "productName": "ASUS Zephyrus S Ultra Slim",
-      "productDesc": "Thin Gaming Laptop",
-      "productPrice": 20099000,
-      "productSrc": "https://img-us1.asus.com/A/show/AW000706/2019/0126/AM0000009/201901AM260000009_15490692392002820033732.jpg",
-      "quantity": 2,
-      "id": 1
-    },
-    {
-      "userId": 2,
-      "productId": 3,
-      "productName": "Macbook Pro",
-      "productDesc": "Apple",
-      "productPrice": 25450000,
-      "productSrc": "https://i2.wp.com/nigerianprice.com/wp-content/uploads/2018/05/macbook-pro-price-in-nigeria.png?fit=557%2C343&ssl=1",
-      "quantity": 1,
-      "id": 2
-    },
-    {
-      "userId": 1,
-      "productId": 1,
-      "productName": "ASUS TUF fx505dd",
-      "productDesc": "Best gaming laptop for the price",
-      "productPrice": 9999999,
-      "productSrc": "https://www.asus.com/media/global/products/4cDARfbRGBOGLKa1/P_setting_fff_1_90_end_600.png",
-      "quantity": 3,
-      "id": 3
-    },
-    {
-      "userId": 1,
-      "productId": 2,
-      "productName": "ASUS Zephyrus S Ultra Slim",
-      "productDesc": "Thin Gaming Laptop",
-      "productPrice": 20099000,
-      "productSrc": "https://img-us1.asus.com/A/show/AW000706/2019/0126/AM0000009/201901AM260000009_15490692392002820033732.jpg",
-      "quantity": 1,
-      "id": 4
-    },
-    {
-      "userId": 1,
-      "productId": 3,
-      "productName": "Macbook Pro",
-      "productDesc": "Apple",
-      "productPrice": 25450000,
-      "productSrc": "https://i2.wp.com/nigerianprice.com/wp-content/uploads/2018/05/macbook-pro-price-in-nigeria.png?fit=557%2C343&ssl=1",
-      "quantity": 1,
-      "id": 5
-    },
     {
       "userId": 4,
       "productId": 8,
@@ -153,6 +103,26 @@
       "productSrc": "https://i2.wp.com/nigerianprice.com/wp-content/uploads/2018/05/macbook-pro-price-in-nigeria.png?fit=557%2C343&ssl=1",
       "quantity": 4,
       "id": 7
+    },
+    {
+      "userId": 2,
+      "productId": 2,
+      "productName": "ASUS Zephyrus S Ultra Slim",
+      "productDesc": "Thin Gaming Laptop",
+      "productPrice": 20099000,
+      "productSrc": "https://img-us1.asus.com/A/show/AW000706/2019/0126/AM0000009/201901AM260000009_15490692392002820033732.jpg",
+      "quantity": 12,
+      "id": 8
+    },
+    {
+      "userId": 2,
+      "productId": 3,
+      "productName": "Macbook Pro",
+      "productDesc": "Apple",
+      "productPrice": 25450000,
+      "productSrc": "https://i2.wp.com/nigerianprice.com/wp-content/uploads/2018/05/macbook-pro-price-in-nigeria.png?fit=557%2C343&ssl=1",
+      "quantity": 12,
+      "id": 9
     }
   ]
 }

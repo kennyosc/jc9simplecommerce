@@ -37,6 +37,7 @@ class Cart extends Component{
             }
         ).then((res)=>{
             console.log(res)
+            this.setState({selectedId:0})
             this.getProduct()
         }).catch(err =>{
             console.log('Gagal')
@@ -54,12 +55,12 @@ class Cart extends Component{
                         <tr>
                             <td style={{width:'100px'}}>{val.productName}</td>
                             <td style={{width:'200px'}}>{val.productDesc}</td>
-                            <td className='text-center'>{val.productPrice}</td>
+                            <td className='text-center'>Rp {val.productPrice.toLocaleString('IN')},-</td>
                             <td className='text-center'>{val.quantity}</td>
                             <td  className='text-center'>
                                 <img className="w-25 img-fluid" src={val.productSrc} alt="Product"/>
                             </td>
-                            <td className='text-center'>{val.quantity * val.productPrice}</td>
+                            <td style={{width:'100px'}} className='text-center'>Rp {(val.quantity * val.productPrice).toLocaleString('IN')},-</td>
                             <td className='text-center' style={{width:'100px'}}>
                                 <button className='btn btn-danger btn-sm' onClick={()=>this.deleteCart(val.id)}>Delete</button>
                                 <button className='btn btn-warning btn-sm'  onClick={()=>{this.setState({selectedId:val.id})}}>Edit</button>
@@ -70,14 +71,14 @@ class Cart extends Component{
                         <tr>
                             <td style={{width:'100px'}}>{val.productName}</td>
                             <td style={{width:'200px'}}>{val.productDesc}</td>
-                            <td className='text-center'>{val.productPrice}</td>
+                            <td className='text-center'>{val.productPrice.toLocaleString('IN')}</td>
                             <td>
                                 <input type='text' defaultValue={val.quantity} ref={(quantity)=>{this.quantity = quantity}}/>
                             </td>
                             <td  className='text-center'>
                                 <img className="w-25 img-fluid" src={val.productSrc} alt="Product"/>
                             </td>
-                            <td className='text-center'>{val.quantity * val.productPrice}</td>
+                            <td className='text-center'>Rp {(val.quantity * val.productPrice).toLocaleString('IN')},-</td>
                             <td className='text-center'></td>
                             
                             <td className="w-25">
@@ -95,7 +96,6 @@ class Cart extends Component{
         })
         return hasil
     }
-
 
 
     showTotalQuantity = () =>{
@@ -121,7 +121,21 @@ class Cart extends Component{
 
             }
         }
-        return totalPrice;
+        return totalPrice.toLocaleString('IN');
+    }
+
+    handleCheckout = () =>{
+        var checkoutArr = this.state.allProduct.filter((val) => val.userId == this.props.user.id)
+        console.log(this.state.allProduct)
+        console.log(checkoutArr)
+
+        for(var i = 0; i<checkoutArr.length; i++){
+            axios.delete(' http://localhost:2019/cart/' + checkoutArr[i].id).then(res=>{
+                this.getProduct()
+            })
+
+        }
+
     }
 
     renderOrderTotal=()=>{
@@ -133,7 +147,7 @@ class Cart extends Component{
                         <h5 class="card-title">TOTAL</h5>
                         <p class="card-text">Quantity: {this.showTotalQuantity()}</p>
                         <p class="card-text">Total price: Rp{this.showTotalPrice()},-</p>
-                        <button className="btn btn-primary">Checkout</button>
+                        <button className="btn btn-primary" onClick={this.handleCheckout}>Checkout</button>
                     </div>
                     </div>
                 </div>

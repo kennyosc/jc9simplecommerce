@@ -41,18 +41,23 @@ class ProductItem extends Component{
                                quantity: unit + existingProduct.quantity
                             })
                  }  else if(existingProduct == undefined){
-                    axios.post('http://localhost:2019/cart',{
-                                userId: userId,
-                                productId : id,
-                                productName : name,
-                                productDesc : desc,
-                                productPrice : parseInt(price),
-                                productSrc : src,
-                                quantity: unit
-                            }).then((res)=>{
-                                console.log(res)
-                                console.log('Input data berhasil')
-                            })
+                     if(unit > 0 && unit !== isNaN(unit)){
+                        axios.post('http://localhost:2019/cart',{
+                            userId: userId,
+                            productId : id,
+                            productName : name,
+                            productDesc : desc,
+                            productPrice : parseInt(price),
+                            productSrc : src,
+                            quantity: unit
+                        }).then((res)=>{
+                            console.log(res);
+                            console.log('Input data berhasil')
+                        })
+                     } else{
+                         alert('Please insert quantity')
+                     }
+                   
                  }
         })
         //kalau productId == id input, maka nambah quantity
@@ -92,7 +97,7 @@ class ProductItem extends Component{
                     <img src={src} className='card-img-top' alt='Product'/>
                     <div className='card-body align-bottom'>
                         <h5 className='card-title'>{name}</h5>
-                        <p className='card-text'>Rp{price},-</p>
+                        <p className='card-text'>Rp{price.toLocaleString('IN')},-</p>
                         <form>
                             <input className='form-control' placeholder='Qty' onChange={this.handleChange}/>    
                         </form>
