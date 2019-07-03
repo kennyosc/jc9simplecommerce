@@ -197,8 +197,8 @@ renderCheckout=()=>{
                                         {this.renderCart()}
                                     </tbody>
                                 </table>
-                                <div className="mx-auto">
-                                    <button className='btn btn-primary' onClick={()=>{this.setState({renderCheckout:true})}}>Checkout</button>
+                                <div>
+                                    <button style={{marginLeft:'500px'}} className='btn btn-primary mb-5' onClick={()=>{this.setState({renderCheckout:true})}}>Checkout</button>
                                 </div>
                             </div>
                         ) : <Redirect to='/login'/>}
@@ -227,9 +227,7 @@ renderCheckout=()=>{
                                         {this.renderCart()}
                                     </tbody>
                                 </table>
-                                <div>
-                                    <button className='btn btn-warning' onClick={()=>{this.setState({renderCheckout: false})}}>Cancel</button>
-                                </div>
+                            
                                 <h1 className="display-4 text-center">Total</h1>
                                     <table className="table table-hover mb-5">
                                         <thead>
@@ -250,7 +248,8 @@ renderCheckout=()=>{
                                     </tbody>
                                 </table>
                                 <div>
-                                    <button className='btn btn-success btn-block my-5' onClick={this.handleCheckout}>Confirm Payment</button>
+                                    <button style={{marginLeft:'340px',width:'400px',color:'white'}} className='btn btn-primary mb-1' onClick={()=>{this.setState({renderCheckout: false})}}>Cancel</button>
+                                    <button className='btn btn-success btn-block mb-5' onClick={this.handleCheckout}>Confirm Payment</button>
                                 </div>
                             </div>
                         ) : <Redirect to='/login'/>}
