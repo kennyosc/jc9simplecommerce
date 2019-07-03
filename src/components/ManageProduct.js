@@ -80,7 +80,7 @@ class ManageProduct extends Component{
     addProduct = () => {
         var name = this.name.value
         var desc = this.desc.value
-        var price = this.price.value
+        var price = parseInt(this.price.value)
         var pict = this.pict.value
 
         axios.post('http://localhost:2019/product',{
@@ -106,7 +106,7 @@ class ManageProduct extends Component{
             {
                 name: this.editName.value,
                 desc: this.editDesc.value,
-                price: this.editPrice.value,
+                price: parseInt(this.editPrice.value),
                 src: this.editSrc.value
             }
         ).then((res)=>{
