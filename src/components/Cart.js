@@ -62,27 +62,25 @@ class Cart extends Component{
                             <td  className='text-center'>
                                 <img className="w-25 img-fluid" src={val.productSrc} alt="Product"/>
                             </td>
-                            <td className='text-center' style={{width:'100px'}}>
-                                <button className='btn btn-danger btn-sm' onClick={()=>this.deleteCart(val.id)}>Delete</button>
+                            <td className='text-center' style={{width:'300px'}}>
+                                <button className='btn btn-danger btn-sm  mx-3 ml-3' onClick={()=>this.deleteCart(val.id)}>Delete</button>
                                 <button className='btn btn-warning btn-sm'  onClick={()=>{this.setState({selectedId:val.id})}}>Edit</button>
                             </td>
                         </tr>)
                 } else{
                     return (
                         <tr>
+                            <td style={{width:'100px'}}>{val.id}</td>
                             <td style={{width:'100px'}}>{val.productName}</td>
                             <td style={{width:'200px'}}>{val.productDesc}</td>
-                            <td className='text-center'>{val.productPrice.toLocaleString('IN')}</td>
+                            <td className='text-center'>Rp {val.productPrice.toLocaleString('IN')},-</td>
                             <td>
                                 <input type='text' defaultValue={val.quantity} ref={(quantity)=>{this.quantity = quantity}}/>
                             </td>
                             <td  className='text-center'>
                                 <img className="w-25 img-fluid" src={val.productSrc} alt="Product"/>
                             </td>
-                            <td className='text-center'>Rp {(val.quantity * val.productPrice).toLocaleString('IN')},-</td>
-                            <td className='text-center'></td>
-                            
-                            <td className="w-25">
+                            <td style={{width:'300px'}}>
                                 <button className='btn btn-success mx-3 text-center' onClick={this.editProduct}>Save</button>
                                 <button className='btn btn-danger text-center' onClick={()=>{this.setState({selectedId: 0})}}>Cancel</button>
                             </td>

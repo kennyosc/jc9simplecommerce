@@ -28,14 +28,14 @@ class ManageProduct extends Component{
                         <td className='text-center'>{val.id}</td>
                         <td style={{width:'250px'}}>{val.name}</td>
                         <td style={{width:'300px'}}>{val.desc}</td>
-                        <td className='text-center'>{val.price}</td>
+                        <td style={{width:'300px'}} className='text-center'>Rp {val.price.toLocaleString('IN')},-</td>
                         <td style={{width:'400px'}} className='text-center'>
                             <img className="w-25 img-fluid" src={val.src} alt="Product"/>
                         </td>
-                        <td className="w-25">
+                        <td style={{width:'250px'}}>
                             {/* yang edit, itu menggunakan this.setState({}) karena tujuannya state.selectedId akan digunakan untuk merender (save and cancel button) */}
                             {/* delete tinggal memasukkkan sebuah parameter, karena dia tidak akan merender apa2 */}
-                            <button className='btn btn-success mx-3 text-center' onClick={()=>{this.setState({selectedId:val.id})}}>Edit</button>
+                            <button className='btn btn-success mx-3 ml-3 text-center' onClick={()=>{this.setState({selectedId:val.id})}}>Edit</button>
                             <button className='btn btn-danger text-center' onClick={()=>{this.deleteProduct(val.id)}}>Delete</button>
                         </td>
                     </tr>

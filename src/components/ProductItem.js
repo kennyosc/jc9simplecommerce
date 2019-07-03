@@ -94,7 +94,7 @@ class ProductItem extends Component{
         
         return(
             <div  className = 'card col-3 mt-5 mx-3'>
-                    <img src={src} className='card-img-top' alt='Product'/>
+                    <img style={{height:'35%'}} src={src} className='card-img-top' alt='Product'/>
                     <div className='card-body align-bottom'>
                         <h5 className='card-title'>{name}</h5>
                         <p className='card-text'>Rp{price.toLocaleString('IN')},-</p>
@@ -105,7 +105,7 @@ class ProductItem extends Component{
                         <Link to={'/detailproduct/' + id}>
                             <button className='btn btn-outline-primary btn-block my-2'>Details</button>
                         </Link>
-                        <button className='btn btn-primary' onClick={()=>this.handleAddToCart(name,id,price,src,desc)}>Add To Cart</button>
+                        <button className='btn btn-primary btn-block' onClick={()=>this.handleAddToCart(name,id,price,src,desc)}>Add To Cart</button>
                     </div>
             </div>
         )
