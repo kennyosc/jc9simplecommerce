@@ -7,7 +7,8 @@ class Cart extends Component{
 
     state={
         allProduct:[],
-        selectedId : 0
+        selectedId : 0,
+        renderCheckout: false
     }
 
     componentDidMount(){
@@ -138,53 +139,126 @@ class Cart extends Component{
 
     }
 
-    renderOrderTotal=()=>{
-        return(
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">TOTAL</h5>
-                        <p class="card-text">Quantity: {this.showTotalQuantity()}</p>
-                        <p class="card-text">Total price: Rp{this.showTotalPrice()},-</p>
-                        <button className="btn btn-primary" onClick={this.handleCheckout}>Checkout</button>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        ) 
-    }
+    // renderOrderTotal=()=>{
+    //     return(
+    //         <div class="row">
+    //             <div class="col-12">
+    //                 <div class="card">
+    //                 <div class="card-body">
+    //                     <h5 class="card-title">TOTAL</h5>
+    //                     <p class="card-text">Quantity: {this.showTotalQuantity()}</p>
+    //                     <p class="card-text">Total price: Rp{this.showTotalPrice()},-</p>
+    //                     <button className="btn btn-primary" onClick={this.handleCheckout}>Checkout</button>
+    //                 </div>
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     ) 
+    // }
+
+renderOrderTotal=()=>{
+    var findId = this.state.allProduct.filter((val)=>val.userId == this.props.user.id)
+    console.log(findId)
+
+    var hasil = findId.map((val)=>{
+    return(
+        <tr className="text-center">
+            <td style={{width:'100px'}}>{val.productId}</td>
+            <td style={{width:'100px'}}>{val.productName}</td>
+            <td style={{width:'100px'}} className='text-center'>{val.quantity}</td>
+            <td style={{width:'100px'}} className='text-center'>Rp {val.productPrice.toLocaleString('IN')},-</td>
+            <td style={{width:'100px'}} className='text-center'>Rp {(val.quantity * val.productPrice).toLocaleString('IN')},-</td>
+        </tr>
+        )
+    })
+    return hasil
+}
 
     render(){
-        return(
-            <div className="container">
-                    {this.props.user.username !== '' ? (
-                        <div>
-                            <h1 className="display-4 text-center">My Cart</h1>
-                                <table className="table table-hover mb-5">
-                                    <thead>
-                                        <tr className='text-center'>
-                                            <th scope="col">NAME</th>
-                                            <th scope="col">DESC</th>
-                                            <th scope="col">PRICE</th>
-                                            <th scope="col">QTY</th>
-                                            <th scope="col">PICTURE</th>
-                                            <th scope="col">TOTAL PRICE</th>
-                                            <th scope="col">ACTIONS</th>
-                                        </tr>
-                                    </thead>
-                                <tbody>
-                                    {this.renderCart()}
-                                </tbody>
-                            </table>
+        if(this.state.renderCheckout === false){
+            return(
+                <div className="container">
+                        {this.props.user.username !== '' ? (
                             <div>
-                                {this.renderOrderTotal()}
+                                <h1 className="display-4 text-center">My Cart</h1>
+                                    <table className="table table-hover mb-5">
+                                        <thead>
+                                            <tr className='text-center'>
+                                                <th scope="col">NAME</th>
+                                                <th scope="col">DESC</th>
+                                                <th scope="col">PRICE</th>
+                                                <th scope="col">QTY</th>
+                                                <th scope="col">PICTURE</th>
+                                                <th scope="col">TOTAL PRICE</th>
+                                                <th scope="col">ACTIONS</th>
+                                            </tr>
+                                        </thead>
+                                    <tbody>
+                                        {this.renderCart()}
+                                    </tbody>
+                                </table>
+                                <div className="mx-auto">
+                                    <button className='btn btn-primary' onClick={()=>{this.setState({renderCheckout:true})}}>Checkout</button>
+                                </div>
                             </div>
-                        </div>
-                    ) : <Redirect to='/login'/>}
-                
-            </div>
-        )
+                        ) : <Redirect to='/login'/>}
+                    
+                </div>
+            )
+        } else if(this.state.renderCheckout === true){
+            return(
+                <div className="container">
+                        {this.props.user.username !== '' ? (
+                            <div>
+                                <h1 className="display-4 text-center">My Cart</h1>
+                                    <table className="table table-hover mb-5">
+                                        <thead>
+                                            <tr className='text-center'>
+                                                <th scope="col">NAME</th>
+                                                <th scope="col">DESC</th>
+                                                <th scope="col">PRICE</th>
+                                                <th scope="col">QTY</th>
+                                                <th scope="col">PICTURE</th>
+                                                <th scope="col">TOTAL PRICE</th>
+                                                <th scope="col">ACTIONS</th>
+                                            </tr>
+                                        </thead>
+                                    <tbody>
+                                        {this.renderCart()}
+                                    </tbody>
+                                </table>
+                                <div>
+                                    <button className='btn btn-warning' onClick={()=>{this.setState({renderCheckout: false})}}>Cancel</button>
+                                </div>
+                                <h1 className="display-4 text-center">Total</h1>
+                                    <table className="table table-hover mb-5">
+                                        <thead>
+                                            <tr className='text-center'>
+                                                <th scope="col">ID</th>
+                                                <th scope="col">NAME</th>
+                                                <th scope="col">QTY</th>
+                                                <th scope="col">PRICE</th>
+                                                <th scope="col">TOTAL</th>
+                                            </tr>
+                                        </thead>
+                                    <tbody>
+                                        {this.renderOrderTotal()}
+                                        <tr className='text-center'>
+                                            <td colSpan="4"><b>TOTAL</b></td>
+                                            <td>Rp {this.showTotalPrice()},-</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div>
+                                    <button className='btn btn-success btn-block my-5' onClick={this.handleCheckout}>Confirm Payment</button>
+                                </div>
+                            </div>
+                        ) : <Redirect to='/login'/>}
+                    
+                </div>
+            )
+        }
+        
     }
 }
 
