@@ -54,14 +54,14 @@ class Cart extends Component{
                 if(val.id !== this.state.selectedId){
                     return(
                         <tr>
-                            <td style={{width:'100px'}}>{val.productName}</td>
+                            <td className='text-center' style={{width:'100px'}}>{val.id}</td>
+                            <td style={{width:'200px'}}>{val.productName}</td>
                             <td style={{width:'200px'}}>{val.productDesc}</td>
-                            <td className='text-center'>Rp {val.productPrice.toLocaleString('IN')},-</td>
+                            <td style={{width:'200px'}} className='text-center'>Rp {val.productPrice.toLocaleString('IN')},-</td>
                             <td className='text-center'>{val.quantity}</td>
                             <td  className='text-center'>
                                 <img className="w-25 img-fluid" src={val.productSrc} alt="Product"/>
                             </td>
-                            <td style={{width:'100px'}} className='text-center'>Rp {(val.quantity * val.productPrice).toLocaleString('IN')},-</td>
                             <td className='text-center' style={{width:'100px'}}>
                                 <button className='btn btn-danger btn-sm' onClick={()=>this.deleteCart(val.id)}>Delete</button>
                                 <button className='btn btn-warning btn-sm'  onClick={()=>{this.setState({selectedId:val.id})}}>Edit</button>
@@ -162,8 +162,8 @@ renderCheckout=()=>{
 
     var hasil = findId.map((val)=>{
     return(
-        <tr className="text-center">
-            <td style={{width:'100px'}}>{val.productId}</td>
+        <tr>
+            <td className='text-center' style={{width:'100px'}}>{val.id}</td>
             <td style={{width:'100px'}}>{val.productName}</td>
             <td style={{width:'100px'}} className='text-center'>{val.quantity}</td>
             <td style={{width:'100px'}} className='text-center'>Rp {val.productPrice.toLocaleString('IN')},-</td>
@@ -184,12 +184,12 @@ renderCheckout=()=>{
                                     <table className="table table-hover mb-5">
                                         <thead>
                                             <tr className='text-center'>
+                                                <th scope="col">ID</th>
                                                 <th scope="col">NAME</th>
                                                 <th scope="col">DESC</th>
                                                 <th scope="col">PRICE</th>
                                                 <th scope="col">QTY</th>
                                                 <th scope="col">PICTURE</th>
-                                                <th scope="col">TOTAL PRICE</th>
                                                 <th scope="col">ACTIONS</th>
                                             </tr>
                                         </thead>
@@ -214,12 +214,12 @@ renderCheckout=()=>{
                                     <table className="table table-hover mb-5">
                                         <thead>
                                             <tr className='text-center'>
+                                                <th scope="col">ID</th>
                                                 <th scope="col">NAME</th>
                                                 <th scope="col">DESC</th>
                                                 <th scope="col">PRICE</th>
                                                 <th scope="col">QTY</th>
                                                 <th scope="col">PICTURE</th>
-                                                <th scope="col">TOTAL PRICE</th>
                                                 <th scope="col">ACTIONS</th>
                                             </tr>
                                         </thead>
