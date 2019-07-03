@@ -54,7 +54,7 @@ class Cart extends Component{
                 if(val.id !== this.state.selectedId){
                     return(
                         <tr>
-                            <td className='text-center' style={{width:'100px'}}>{val.id}</td>
+                            <td className='text-center' style={{width:'100px'}}>{val.productId}</td>
                             <td style={{width:'200px'}}>{val.productName}</td>
                             <td style={{width:'200px'}}>{val.productDesc}</td>
                             <td style={{width:'200px'}} className='text-center'>Rp {val.productPrice.toLocaleString('IN')},-</td>
@@ -70,7 +70,7 @@ class Cart extends Component{
                 } else{
                     return (
                         <tr>
-                            <td style={{width:'100px'}}>{val.id}</td>
+                            <td style={{width:'100px'}}>{val.productId}</td>
                             <td style={{width:'100px'}}>{val.productName}</td>
                             <td style={{width:'200px'}}>{val.productDesc}</td>
                             <td className='text-center'>Rp {val.productPrice.toLocaleString('IN')},-</td>
@@ -161,7 +161,7 @@ renderCheckout=()=>{
     var hasil = findId.map((val)=>{
     return(
         <tr>
-            <td className='text-center' style={{width:'100px'}}>{val.id}</td>
+            <td className='text-center' style={{width:'100px'}}>{val.productId}</td>
             <td style={{width:'100px'}}>{val.productName}</td>
             <td style={{width:'100px'}} className='text-center'>{val.quantity}</td>
             <td style={{width:'100px'}} className='text-center'>Rp {val.productPrice.toLocaleString('IN')},-</td>
